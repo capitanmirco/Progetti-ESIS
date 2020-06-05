@@ -25,10 +25,7 @@ public class RuoliDAO extends AbstractDAO<Ruoli> {
 			ruolo.setNome(nome);
 			ruolo.setDescrizione(descrizione);
 
-			EntityTransaction transaction = getEntityManager().getTransaction();
-			transaction.begin();
-			getEntityManager().persist(ruolo);
-			transaction.commit();
+			insert(ruolo);
 			result = true;
 			return result;
 		} catch (Exception e) {
