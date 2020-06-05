@@ -110,13 +110,20 @@ public class ServletExample extends HttpServlet {
 
 		//Inizio Giovanni e Tullio
 		case INSERTAZIENDA:
-
+			dispatcherPath="azienda.jsp";
+			message="Inserito Azienda con successo";
 			break;
 		case DELETEAZIENDA:
+			dispatcherPath="azienda.jsp";
+			message="Eliminato Azienda con successo";
 			break;
 		case UPDATEAZIENDA:
+			dispatcherPath="azienda.jsp";
+			message="Aggiornato Azienda con successo";
 			break;
 		case SELECTAZIENDA:
+			dispatcherPath="azienda.jsp";
+			message="Selezionata Azienda con successo";
 			break;
 		//Fine Giovanni e Tullio
 
@@ -125,11 +132,13 @@ public class ServletExample extends HttpServlet {
 			idAzienda = Integer.parseInt(request.getParameter("idAzienda"));
 			idDipartimento = serviceDipartimento.insertDipartimento(nome,descrizione,idAzienda);
 			dto = serviceDipartimento.getDipartimentoByPK(idDipartimento);
+			dispatcherPath="dipartimento.jsp";
 			message="Inserito Dipartimento con successo";
 			break;
 		case DELETEDIPARTIMENTO:
 			idDipartimento = Integer.parseInt(request.getParameter("idDipartimento"));
 			serviceDipartimento.deleteDipartimento(idDipartimento);
+			dispatcherPath="dipartimento.jsp";
 			message="Eliminato Ruolo con successo";
 			break;
 		case UPDATEDIPARTIMENTO:
@@ -137,29 +146,46 @@ public class ServletExample extends HttpServlet {
 			idDipartimento = Integer.parseInt(request.getParameter("idDipartimento"));
 			serviceDipartimento.updateDipartimento(nome, descrizione,idAzienda, idDipartimento);
 			dto = serviceDipartimento.getDipartimentoByPK(idDipartimento);
-			message="Inserito Dipartimento con successo";
+			dispatcherPath="dipartimento.jsp";
+			message="Aggiornato Dipartimento con successo";
 			break;
 		case SELECTDIPARTIMENTO:
+			dispatcherPath="dipartimento.jsp";
+			message="Selezionato Dipartimento con successo";
 			break;
 		//Fine Amra e Sara
 
 		//Inizio Mirko e Mario
 		case INSERTIMPIEGATO:
+			dispatcherPath="impiegato.jsp";
+			message="Inserito Impiegato con successo";
 			break;
 		case DELETEIMPIEGATO:
+			dispatcherPath="impiegato.jsp";
+			message="Eliminato Impiegato con successo";
 			break;
 		case UPDATEIMPIEGATO:
+			dispatcherPath="impiegato.jsp";
+			message="Aggiornato Impiegato con successo";
 			break;
 		case SELECTIMPIEGATO:
+			dispatcherPath="impiegato.jsp";
+			message="Selezionato Impiegato con successo";
 			break;
 		//Fine Mirko e Mario
 
 		//Inizio Giampiero e Maurizio
 		case INSERTMANSIONE:
+			dispatcherPath="mansione.jsp";
+			message="Inserito Mansione con successo";
 			break;
 		case DELETEMANSIONE:
+			dispatcherPath="mansione.jsp";
+			message="Eliminato Mansione con successo";
 			break;
 		case UPDATEMANSIONE:
+			dispatcherPath="mansione.jsp";
+			message="Aggiornato Mansione con successo";
 			break;
 		case SELECTMANSIONE:
 			break;
@@ -172,18 +198,23 @@ public class ServletExample extends HttpServlet {
 			ruoliDTO.setNome(nome);
 			ruoliDTO.setDescrizione(descrizione);
 			dto=ruoliDTO;
+			dispatcherPath="ruoli.jsp";
 			message="Inserito Ruolo con successo";
 			break;
 		case DELETERUOLO:
 			service.deleteRuolo(nome);
+			dispatcherPath="ruoli.jsp";
 			message="Eliminato Ruolo con successo";
 			break;
 		case UPDATERUOLO:
 			service.updateRuolo(nome,descrizione);
 			dto=service.getRuoliByName(nome);
+			dispatcherPath="ruoli.jsp";
 			message="Aggiornato Ruolo con successo";
 			break;
 		case SELECTRUOLO:
+
+			dispatcherPath="ruoli.jsp";
 			message="Selezionato Ruoli con successo";
 			break;
 		}

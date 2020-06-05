@@ -18,14 +18,28 @@
     	<h1>Registrazione Ruolo</h1>
     	<form action="service" method="GET">
     	<input type="hidden" name="callType" id="callType" value="">	
-		  <div class="form-group">
-		    <label for="nome">Inserisci Nome</label>
-		    <input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome">
-		  </div>
-		  <div class="form-group">
-		    <label for="descrizione">Inserisci Descrizione</label>
-		    <input type="text" class="form-control" id="descrizione" aria-describedby="descrizione" name="descrizione">
-		  </div>
+		  <c:choose>
+		  	<c:when test="${dto  ne null}">
+		  	<div class="form-group">
+			    <label for="nome">Inserisci Nome</label>
+			    <input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome" value="<c:out value="${dto.nome}"/>">
+			  </div>
+			  <div class="form-group">
+			    <label for="descrizione">Inserisci Descrizione</label>
+			    <input type="text" class="form-control" id="descrizione" aria-describedby="descrizione" name="descrizione"  value="<c:out value="${dto.descrizione}"/>">
+			  </div>
+		  	</c:when>
+		  	<c:otherwise>
+				<div class="form-group">
+			    <label for="nome">Inserisci Nome</label>
+			    <input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome">
+			  </div>
+			  <div class="form-group">
+			    <label for="descrizione">Inserisci Descrizione</label>
+			    <input type="text" class="form-control" id="descrizione" aria-describedby="descrizione" name="descrizione">
+			  </div>
+			</c:otherwise>  
+		  </c:choose>
 		  <button type="submit" class="btn btn-primary" id="inserisciBtn">Inserisci Ruolo</button>
 		  <button type="submit" class="btn btn-primary" id="modificaBtn">Modifica Ruolo</button>
 		  <button type="submit" class="btn btn-primary" id="eliminaBtn">Elimina Ruolo</button>
@@ -50,9 +64,5 @@
 			});
 		});
  	</script>
- 	<c:if test="${dto  ne null}">
- 	
-	</c:if>
-    
   </body>
 </html>
