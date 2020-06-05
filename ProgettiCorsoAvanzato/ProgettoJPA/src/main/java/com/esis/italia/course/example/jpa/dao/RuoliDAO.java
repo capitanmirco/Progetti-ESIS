@@ -9,24 +9,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import com.esis.italia.course.example.jpa.Ruoli;
 
-public class RuoliDAO extends AbstractDAO<Ruoli> {
+public class RuoliDAO extends AbstractDAO<Ruoli,String> {
 
 
-	public boolean insertRuolo(String nome, String descrizione) {
-
-		boolean result = false;
+	public String insertRuolo(String nome, String descrizione) {
+		String result = "";
 		try {
 			Ruoli ruolo = new Ruoli();
 			ruolo.setNome(nome);
 			ruolo.setDescrizione(descrizione);
-
-			insert(ruolo);
-			result = true;
+			result = insert(ruolo);
 			return result;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -35,17 +31,10 @@ public class RuoliDAO extends AbstractDAO<Ruoli> {
 	}
 
 	public boolean deleteRuolo(String nome) {
-
 		boolean result = false;
 		try {
-			Ruoli ruolo = new Ruoli();
-			ruolo.setNome(nome);
-
-			EntityTransaction transaction = getEntityManager().getTransaction();
-			transaction.begin();
-			getEntityManager().remove(ruolo);
-			transaction.commit();
-			result = true;
+			Ruoli ruoli = selectByPK(Ruoli.class, nome);
+			result = delete(ruoli);
 			return result;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -53,29 +42,17 @@ public class RuoliDAO extends AbstractDAO<Ruoli> {
 
 	}
 
-	public boolean updateRuolo(String nome, String descrizione) {
-
-		boolean result = false;
+	public String updateRuolo(String nome, String descrizione) {
+		String result = "";
 		try {
-			Ruoli ruolo = new Ruoli();
+			Ruoli ruolo = selectByPK(Ruoli.class, nome);
 			ruolo.setNome(nome);
 			ruolo.setDescrizione(descrizione);
-
-			Ruoli testRuolo = getEntityManager().find(Ruoli.class, nome);
-			if (testRuolo != null) {
-				EntityTransaction transaction = getEntityManager().getTransaction();
-				transaction.begin();
-				getEntityManager().merge(ruolo);
-				transaction.commit();
-				result = true;
-			}
-
+			result=updateByPK(ruolo, nome);
 			return result;
-
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-
 	}
 
 	public List<Map> selectRuolo(String nome, String descrizione) {

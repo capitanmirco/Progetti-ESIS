@@ -28,15 +28,15 @@ public class ServiceRuoli extends AbstractService<RuoliDAO> {
 		}
 		return result;
 	}
-	public boolean insertRuolo(String name,String description) {
+	public String insertRuolo(String name,String description) {
 		return getDao().insertRuolo(name, description);
 
 	}
-	public boolean updateRuolo(String name,String description) {
+	public String updateRuolo(String name,String description) {
 		return getDao().updateRuolo(name, description);
 
 	}
-	public boolean deleteRuolo(String name,String description) {
+	public boolean deleteRuolo(String name) {
 		return getDao().deleteRuolo(name);
 
 	}

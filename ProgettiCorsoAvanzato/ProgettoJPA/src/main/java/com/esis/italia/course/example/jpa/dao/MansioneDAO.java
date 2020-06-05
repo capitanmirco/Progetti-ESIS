@@ -12,6 +12,8 @@ import java.util.Map.Entry;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import com.esis.italia.course.example.jpa.Impiegato;
+import com.esis.italia.course.example.jpa.ImpiegatoPK;
 import com.esis.italia.course.example.jpa.Mansione;
 import com.esis.italia.course.example.jpa.Ruoli;
 
@@ -19,17 +21,15 @@ import com.esis.italia.course.example.jpa.Ruoli;
  * @author Giampiero Cicala
  *
  */
-public class MansioneDAO extends AbstractDAO<Mansione>{
-	public boolean insertRuolo(String nome, String descrizione) {
+public class MansioneDAO extends AbstractDAO<Mansione, Integer> {
+	public Integer insertRuolo(String nome, String descrizione) {
 
-		boolean result = false;
+		Integer result = -1;
 		try {
 			Mansione mansione = new Mansione();
 			mansione.setImpiegato(null);
 			mansione.setRuoli(null);
-
-			insert(mansione);
-			result = true;
+			result = insert(mansione);
 			return result;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -56,23 +56,24 @@ public class MansioneDAO extends AbstractDAO<Mansione>{
 
 	}
 
-	public boolean updateRuolo(String nome, String descrizione) {
+	public Integer updateMansione(Integer idMansione, ImpiegatoPK impiegatoPK, String idRuoli) {
 
-		boolean result = false;
+		Integer result = -1;
 		try {
-			Ruoli ruolo = new Ruoli();
-			ruolo.setNome(nome);
-			ruolo.setDescrizione(descrizione);
-
-			Ruoli testRuolo = getEntityManager().find(Ruoli.class, nome);
-			if (testRuolo != null) {
-				EntityTransaction transaction = getEntityManager().getTransaction();
-				transaction.begin();
-				getEntityManager().merge(ruolo);
-				transaction.commit();
-				result = true;
+			if (idMansione != null && (impiegatoPK != null || idRuoli != null)) {
+				Mansione mansione = selectByPK(Mansione.class, idMansione);
+				ImpiegatoDAO impiegatoDAO = new ImpiegatoDAO();
+				RuoliDAO ruoliDAO = new RuoliDAO();
+				if (impiegatoPK != null) {
+					Impiegato impiegato = impiegatoDAO.selectByPK(Impiegato.class, impiegatoPK);
+					mansione.setImpiegato(impiegato);
+				}
+				if (idRuoli != null) {
+					Ruoli ruoli = ruoliDAO.selectByPK(Ruoli.class, idRuoli);
+					mansione.setRuoli(ruoli);
+				}
+				result = updateByPK(mansione, idMansione);
 			}
-
 			return result;
 
 		} catch (Exception e) {

@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @NamedQuery(name="Azienda.findAll", query="SELECT a FROM Azienda a")
-public class Azienda implements Serializable {
+public class Azienda implements GenericEntity<Integer>{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -73,6 +73,11 @@ public class Azienda implements Serializable {
 		dipartimento.setAzienda(null);
 
 		return dipartimento;
+	}
+
+	@Override
+	public Integer getID() {
+		return this.idAzienda;
 	}
 
 }

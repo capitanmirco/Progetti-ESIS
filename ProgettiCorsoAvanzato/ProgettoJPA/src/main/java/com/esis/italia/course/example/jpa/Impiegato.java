@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQuery(name="Impiegato.findAll", query="SELECT i FROM Impiegato i")
-public class Impiegato implements Serializable {
+public class Impiegato implements  GenericEntity<ImpiegatoPK>{
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
@@ -47,6 +47,10 @@ public class Impiegato implements Serializable {
 	private List<Mansione> mansiones;
 
 	public Impiegato() {
+	}
+	
+	public interface GenericEntity<ID>{
+		ID getID();
 	}
 
 	public ImpiegatoPK getId() {
@@ -87,6 +91,11 @@ public class Impiegato implements Serializable {
 
 	public void setTitoloStudio(String titoloStudio) {
 		this.titoloStudio = titoloStudio;
+	}
+
+	@Override
+	public ImpiegatoPK getID() {
+		return this.id;
 	}
 
 }

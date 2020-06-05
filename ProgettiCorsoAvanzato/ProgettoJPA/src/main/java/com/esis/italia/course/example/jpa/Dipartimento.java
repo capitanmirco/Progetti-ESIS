@@ -1,28 +1,37 @@
 package com.esis.italia.course.example.jpa;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 
 
 /**
  * The persistent class for the dipartimento database table.
- * 
+ *
  */
 @Entity
 @NamedQuery(name="Dipartimento.findAll", query="SELECT d FROM Dipartimento d")
-public class Dipartimento implements Serializable {
+@SequenceGenerator(name="seq_Dipartimento", initialValue=1, allocationSize=100)
+public class Dipartimento implements GenericEntity<Integer>{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id_dipartimento")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "seq_Dipartimento")
 	private Integer idDipartimento;
-
-	private String descrizione;
 
 	@Column(name="id_mansione")
 	private Integer idMansione;
 
 	private String nome;
+
+	private String descrizione;
 
 	//bi-directional many-to-one association to Azienda
 	@ManyToOne
@@ -31,6 +40,7 @@ public class Dipartimento implements Serializable {
 
 	public Dipartimento() {
 	}
+
 
 	public Integer getIdDipartimento() {
 		return this.idDipartimento;
@@ -70,6 +80,12 @@ public class Dipartimento implements Serializable {
 
 	public void setAzienda(Azienda azienda) {
 		this.azienda = azienda;
+	}
+
+
+	@Override
+	public Integer getID() {
+		return this.idDipartimento;
 	}
 
 }

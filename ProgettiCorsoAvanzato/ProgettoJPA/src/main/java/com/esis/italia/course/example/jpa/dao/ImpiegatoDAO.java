@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import com.esis.italia.course.example.jpa.Impiegato;
 import com.esis.italia.course.example.jpa.ImpiegatoPK;
 
-public class ImpiegatoDAO extends AbstractDAO {
+public class ImpiegatoDAO extends AbstractDAO<Impiegato,ImpiegatoPK> {
 
 	public boolean addImpiegato(String codiceFiscale, String nome, String cognome, String citta, Date dataNascita,
 			String indirizzo, String titoloStudio) {

@@ -8,8 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.esis.italia.course.example.dto.GenericDTO;
 import com.esis.italia.course.example.dto.RuoliDTO;
 import com.esis.italia.course.example.enumeration.CallType;
+import com.esis.italia.course.example.jpa.ImpiegatoPK;
+import com.esis.italia.course.example.services.ServiceAzienda;
+import com.esis.italia.course.example.services.ServiceDipartimento;
 import com.esis.italia.course.example.services.ServiceRuoli;
 
 /**
@@ -82,14 +86,25 @@ public class ServletExample extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RuoliDTO dto=new RuoliDTO();
+		GenericDTO dto=null;
+
 		String message="";
 		String dispatcherPath="";
 		ServiceRuoli service=new ServiceRuoli();
+		ServiceDipartimento serviceDipartimento=new ServiceDipartimento();
+		ServiceAzienda serviceAzienda=new ServiceAzienda();
 
 
 		String nome = request.getParameter("nome");
 		String descrizione=request.getParameter("descrizione");
+
+		Integer idAzienda = null;
+		Integer idDipartimento = null;
+		Integer idRuoli=null;
+		Integer idManzioni=null;
+		ImpiegatoPK idImpiegato=null;
+
+
 		String callType = request.getParameter("callType");
 		switch (CallType.valueOf(callType)) {
 
@@ -107,10 +122,22 @@ public class ServletExample extends HttpServlet {
 
 		//Inizio Amra e Sara
 		case INSERTDIPARTIMENTO:
+			idAzienda = Integer.parseInt(request.getParameter("idAzienda"));
+			idDipartimento = serviceDipartimento.insertDipartimento(nome,descrizione,idAzienda);
+			dto = serviceDipartimento.getDipartimentoByPK(idDipartimento);
+			message="Inserito Dipartimento con successo";
 			break;
 		case DELETEDIPARTIMENTO:
+			idDipartimento = Integer.parseInt(request.getParameter("idDipartimento"));
+			serviceDipartimento.deleteDipartimento(idDipartimento);
+			message="Eliminato Ruolo con successo";
 			break;
 		case UPDATEDIPARTIMENTO:
+			idAzienda = Integer.parseInt(request.getParameter("idAzienda"));
+			idDipartimento = Integer.parseInt(request.getParameter("idDipartimento"));
+			serviceDipartimento.updateDipartimento(nome, descrizione,idAzienda, idDipartimento);
+			dto = serviceDipartimento.getDipartimentoByPK(idDipartimento);
+			message="Inserito Dipartimento con successo";
 			break;
 		case SELECTDIPARTIMENTO:
 			break;
@@ -140,22 +167,20 @@ public class ServletExample extends HttpServlet {
 
 		//Inizio Giampiero e Maurizio
 		case INSERTRUOLO:
+			RuoliDTO ruoliDTO=new RuoliDTO();
 			service.insertRuolo(nome,descrizione);
-			dto.setNome(nome);
-			dto.setDescrizione(descrizione);
+			ruoliDTO.setNome(nome);
+			ruoliDTO.setDescrizione(descrizione);
+			dto=ruoliDTO;
 			message="Inserito Ruolo con successo";
 			break;
 		case DELETERUOLO:
-			service.deleteRuolo(request.getParameter("nome"),request.getParameter("descrizione"));
-			dto.setNome(nome);
-			dto.setDescrizione(descrizione);
-			message="Aggiornato Ruolo con successo";
+			service.deleteRuolo(nome);
 			message="Eliminato Ruolo con successo";
 			break;
 		case UPDATERUOLO:
-			service.updateRuolo(request.getParameter("nome"),request.getParameter("descrizione"));
-			dto.setNome(nome);
-			dto.setDescrizione(descrizione);
+			service.updateRuolo(nome,descrizione);
+			dto=service.getRuoliByName(nome);
 			message="Aggiornato Ruolo con successo";
 			break;
 		case SELECTRUOLO:

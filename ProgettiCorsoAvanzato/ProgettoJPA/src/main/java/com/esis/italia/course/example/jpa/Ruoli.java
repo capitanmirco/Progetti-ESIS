@@ -1,16 +1,17 @@
 package com.esis.italia.course.example.jpa;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 
 /**
  * The persistent class for the ruoli database table.
- * 
+ *
  */
 @Entity
 @NamedQuery(name="Ruoli.findAll", query="SELECT r FROM Ruoli r")
-public class Ruoli implements Serializable {
+public class Ruoli implements GenericEntity<String>{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,6 +36,11 @@ public class Ruoli implements Serializable {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	@Override
+	public String getID() {
+		return this.nome;
 	}
 
 }

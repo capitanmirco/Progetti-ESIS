@@ -15,19 +15,22 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.esis.italia.course.example.jpa.GenericEntity;
 import com.esis.italia.course.example.jpa.Ruoli;
 
 /**
  * @author Giampiero Cicala
  *
  */
-abstract class AbstractDAO<T> implements GenericDAO {
-	private T entity;
+abstract class AbstractDAO<T extends GenericEntity<ID>, ID> implements GenericDAO {
+
 	private final EntityManager entityManager;
+
 	public AbstractDAO() {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ProgettoJPA");
 		this.entityManager = entityManagerFactory.createEntityManager();
 	}
+
 	/**
 	 * @return the entityManager
 	 */
@@ -36,15 +39,15 @@ abstract class AbstractDAO<T> implements GenericDAO {
 		return entityManager;
 	}
 
-	protected boolean insert(T entity) {
+	protected ID insert(T entity) {
 
-		boolean result = false;
+		ID result = null;
 		try {
 			EntityTransaction transaction = getEntityManager().getTransaction();
 			transaction.begin();
 			getEntityManager().persist(entity);
 			transaction.commit();
-			result = true;
+			result = entity.getID();
 			return result;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -56,8 +59,6 @@ abstract class AbstractDAO<T> implements GenericDAO {
 
 		boolean result = false;
 		try {
-
-
 			EntityTransaction transaction = getEntityManager().getTransaction();
 			transaction.begin();
 			getEntityManager().remove(entity);
@@ -70,19 +71,18 @@ abstract class AbstractDAO<T> implements GenericDAO {
 
 	}
 
-	protected boolean update(T entity,String nome) {
+	protected ID updateByPK(T entity, ID id) {
 
-		boolean result = false;
+		ID result = null;
 		try {
 
-
-			T testRuolo = (T) getEntityManager().find(entity.getClass(), nome);
+			T testRuolo = (T) getEntityManager().find(entity.getClass(), id);
 			if (testRuolo != null) {
 				EntityTransaction transaction = getEntityManager().getTransaction();
 				transaction.begin();
 				getEntityManager().merge(entity);
 				transaction.commit();
-				result = true;
+				result = entity.getID();
 			}
 
 			return result;
@@ -91,6 +91,17 @@ abstract class AbstractDAO<T> implements GenericDAO {
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	public T selectByPK(Class<? extends T> clazz, ID id) {
+
+		T result = null;
+		try {
+			result = getEntityManager().find(clazz, id);
+			return result;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	protected List<Map> select(String nome, String descrizione) {

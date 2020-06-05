@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @NamedQuery(name="Mansione.findAll", query="SELECT m FROM Mansione m")
-public class Mansione implements Serializable {
+public class Mansione implements GenericEntity<Integer> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -40,6 +40,7 @@ public class Mansione implements Serializable {
 	public Mansione() {
 	}
 
+	
 	public Integer getIdMansione() {
 		return this.idMansione;
 	}
@@ -47,7 +48,7 @@ public class Mansione implements Serializable {
 	public void setIdMansione(Integer idMansione) {
 		this.idMansione = idMansione;
 	}
-
+	
 
 
 	public Ruoli getRuoli() {
@@ -72,6 +73,13 @@ public class Mansione implements Serializable {
 	 */
 	public void setImpiegato(Impiegato impiegato) {
 		this.impiegato = impiegato;
+	}
+
+
+	@Override
+	public Integer getID() {
+		// TODO Auto-generated method stub
+		return this.idMansione;
 	}
 
 
