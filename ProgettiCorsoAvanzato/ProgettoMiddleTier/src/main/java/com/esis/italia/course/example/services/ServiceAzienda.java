@@ -3,6 +3,8 @@ package com.esis.italia.course.example.services;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Query;
+
 import com.esis.italia.course.example.dto.AziendaDTO;
 import com.esis.italia.course.example.jpa.Azienda;
 import com.esis.italia.course.example.jpa.dao.AziendaDAO;
@@ -11,6 +13,10 @@ public class ServiceAzienda extends AbstractService<AziendaDAO> {
 
 	public ServiceAzienda() {
 		this.dao = new AziendaDAO();
+	}
+	
+	public Integer getId(String nome) {
+		return getDao().getIdByName(nome);
 	}
 	
 	public Integer insertAzienda(String nome,String descrizione) {
@@ -45,19 +51,6 @@ public class ServiceAzienda extends AbstractService<AziendaDAO> {
 		}
 		
 		return result;
-	}
-	
-	public Integer getIdByName(String nome) {
-		
-		Azienda a = new Azienda();
-		List<Map> lista = getDao().selectAzienda(nome, null);
-		
-		if(lista.size()>0) {
-			Map map = lista.get(0);
-			return (Integer) map.get("idAzienda");
-		}
-		
-		return null;
 	}
 	
 }

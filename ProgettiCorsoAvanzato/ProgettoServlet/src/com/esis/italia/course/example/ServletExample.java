@@ -67,9 +67,8 @@ public class ServletExample extends HttpServlet {
 				
 			case DELETEAZIENDA:
 				
-				idAzienda = serviceAzienda.getIdByName(nome);
+				idAzienda = serviceAzienda.getId(nome);
 				serviceAzienda.deleteAzienda(idAzienda);
-				dto = serviceAzienda.getAziendaByName(nome);
 				
 				dispatcherPath="azienda.jsp";
 				message="Azienda eliminata con successo";
@@ -77,7 +76,7 @@ public class ServletExample extends HttpServlet {
 				
 			case UPDATEAZIENDA:
 				
-				idAzienda = serviceAzienda.getIdByName(nome);
+				idAzienda = serviceAzienda.getId(nome);
 				serviceAzienda.updateAzienda(nome, descrizione, idAzienda);
 				dto = serviceAzienda.getAziendaByName(nome);
 				

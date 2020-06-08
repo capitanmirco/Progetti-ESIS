@@ -5,6 +5,7 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "azienda")
 @NamedQuery(name="Azienda.findAll", query="SELECT a FROM Azienda a")
 @SequenceGenerator(name="sq_azienda", initialValue=1, allocationSize=1)
 public class Azienda implements GenericEntity<Integer>{
@@ -54,7 +55,7 @@ public class Azienda implements GenericEntity<Integer>{
 	public List<Dipartimento> getDipartimentos() {
 		return this.dipartimentos;
 	}
-
+	
 	public void setDipartimentos(List<Dipartimento> dipartimentos) {
 		this.dipartimentos = dipartimentos;
 	}

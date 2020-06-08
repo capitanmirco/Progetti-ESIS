@@ -33,13 +33,14 @@ public class AziendaDAO extends AbstractDAO<Azienda, Integer> {
 
 		try {
 			Azienda azienda = selectByPK(Azienda.class, idAzienda);
-			done=delete(azienda);
+			done = delete(azienda);
 			return done;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
+	
 	public Integer updateAziendaDesc(String nome, String descrizione, Integer idAzienda) {
 
 		Integer done = null;
@@ -55,6 +56,7 @@ public class AziendaDAO extends AbstractDAO<Azienda, Integer> {
 				if (descrizione != null && !descrizione.isEmpty()) {
 					azienda.setDescrizione(descrizione);
 				}
+				
 				done = updateByPK(azienda, idAzienda);
 			}
 			return done;
@@ -70,54 +72,82 @@ public class AziendaDAO extends AbstractDAO<Azienda, Integer> {
 		return azienda;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Map> selectAzienda(String nome, String descrizione) {
+		
 		List result = new ArrayList<>();
 		HashMap appo = new HashMap<>();
+		
 		try {
 			Azienda azienda = new Azienda();
 			azienda.setNome(nome);
-
-			Azienda testAzienda = getEntityManager().find(Azienda.class, nome);
-			String tempQuery = "select r from Azienda r ";
+			
+			String tempQuery = "select a from Azienda a ";
 			String where = " ";
 
 			if (nome != null && !nome.isEmpty()) {
-				where += "r.nome = :nome";
+				where += "a.nome = :nome";
 				appo.put("nome", nome);
-
 			}
 			
+			
 			if (descrizione != null && !descrizione.isEmpty()) {
+				
 				if (appo.isEmpty()) {
-					where += "r.descrizione = :descrizione";
-				} else if (!appo.isEmpty()) {
-					where += " and r.descrizione = :descrizione";
+					where += "a.descrizione = :descrizione";
+				} 
+				
+				else if (!appo.isEmpty()) {
+					where += " and a.descrizione = :descrizione";
 				}
+				
 				appo.put("descrizione", descrizione);
 			}
+			
 			
 			if (!where.trim().isEmpty()) {
 				tempQuery += "where " + where;
 			}
 
 			Query query = getEntityManager().createQuery(tempQuery);
-			appo.entrySet().forEach(action -> {
-				query.setParameter((String) ((Entry) action).getKey(), ((Entry) action).getValue());
+			
+			appo
+			.entrySet()
+			.forEach(
+					action -> { 
+						query.setParameter( 
+								(String) ((Entry) action).getKey(), ((Entry) action).getValue());
 			});
 
-			List<Ruoli> list = query.getResultList();
-			for (Ruoli r : list) {
+			List<Azienda> list = query.getResultList();
+			
+			for (Azienda a : list) {
+				
 				HashMap map = new HashMap();
-				map.put("nome", r.getNome());
-				map.put("descrizione", r.getDescrizione());
+				map.put("nome", a.getNome());
+				map.put("descrizione", a.getDescrizione());
+				
 				result.add(map);
 			}
 
 			return result;
+			
 		} catch (Exception e) {
 			throw e;
 		}
 
+	}
+	
+	public Integer getIdByName(String nome) {
+		
+		String sql = "SELECT a FROM Azienda a WHERE nome = :nome";
+		Query query = getEntityManager().createQuery(sql);
+		query.setParameter("nome", nome);
+		
+		List<Azienda> lista = query.getResultList();
+		
+		return lista.get(0).getID();
+		
 	}
 
 }
