@@ -22,4 +22,5 @@ public class AziendaDTO extends AbstractDTO {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+	
 }

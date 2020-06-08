@@ -1,21 +1,18 @@
 package com.esis.italia.course.example.jpa;
 
-import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
 
-/**
- * The persistent class for the azienda database table.
- * 
- */
 @Entity
 @NamedQuery(name="Azienda.findAll", query="SELECT a FROM Azienda a")
+@SequenceGenerator(name="seq_Azienda", initialValue=1, allocationSize=100)
 public class Azienda implements GenericEntity<Integer>{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@Column(name="id_azienda")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "seq_Azienda")
 	private Integer idAzienda;
 
 	private String descrizione;
