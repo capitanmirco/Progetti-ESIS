@@ -6,12 +6,13 @@ import java.util.List;
 
 @Entity
 @NamedQuery(name="Azienda.findAll", query="SELECT a FROM Azienda a")
+@SequenceGenerator(name="seq_Azienda", initialValue=1, allocationSize=100)
 public class Azienda implements GenericEntity<Integer>{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_Azienda")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_azienda")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "seq_Azienda")
 	private Integer idAzienda;
 
 	private String descrizione;
