@@ -9,7 +9,7 @@ import java.util.List;
 @SequenceGenerator(name="seq_Azienda", initialValue=1, allocationSize=100)
 public class Azienda implements GenericEntity<Integer>{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@Column(name="id_azienda")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "seq_Azienda")
