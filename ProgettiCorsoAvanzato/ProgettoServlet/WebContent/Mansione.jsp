@@ -23,6 +23,7 @@
 			<input type="hidden" name="callType" id="callType" value="">
 			<c:choose>
 				<c:when test="${dto  ne null}">
+				<input type="hidden" name="IdMansione" id="IdMansione" value="IdMansione">
 					<div class="form-group">
 						<label for="codiceFiscale">Inserisci il codice fiscale</label> <input
 							type="text" class="form-control" id="codiceFiscale"

@@ -82,7 +82,7 @@ public class MansioneDAO extends AbstractDAO<Mansione, Integer> {
 
 	}
 
-	public List<Map> selectRuolo(Mansione mansione) {
+	public List<Map> selectMansione(Mansione mansione) {
 		List result = new ArrayList<>();
 		HashMap appo = new HashMap<>();
 		try {

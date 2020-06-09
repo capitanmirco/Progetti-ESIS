@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.esis.italia.course.example.dto.AziendaDTO;
 import com.esis.italia.course.example.dto.GenericDTO;
+import com.esis.italia.course.example.dto.ImpiegatoDTO;
+import com.esis.italia.course.example.dto.MansioneDTO;
 import com.esis.italia.course.example.dto.RuoliDTO;
 import com.esis.italia.course.example.enumeration.CallType;
 import com.esis.italia.course.example.jpa.AziendaPK;
 import com.esis.italia.course.example.jpa.ImpiegatoPK;
 import com.esis.italia.course.example.services.ServiceAzienda;
 import com.esis.italia.course.example.services.ServiceDipartimento;
+import com.esis.italia.course.example.services.ServiceMansione;
 import com.esis.italia.course.example.services.ServiceRuoli;
 
 
@@ -33,6 +36,9 @@ public class ServletExample extends HttpServlet {
 		GenericDTO dto = null;
 		
 		AziendaDTO aziendaDTO = new AziendaDTO();
+		RuoliDTO ruoliDTO = new RuoliDTO();
+		ImpiegatoDTO impiegatoDTO = new ImpiegatoDTO();
+		MansioneDTO mansioneDTO = new MansioneDTO();
 		
 		String message="";
 		String dispatcherPath="";
@@ -40,6 +46,7 @@ public class ServletExample extends HttpServlet {
 		ServiceRuoli serviceRuoli = new ServiceRuoli();
 		ServiceDipartimento serviceDipartimento = new ServiceDipartimento();
 		ServiceAzienda serviceAzienda = new ServiceAzienda();
+		ServiceMansione serviceMansione = new ServiceMansione();
 		
 		
 		String nome = request.getParameter("nome");
@@ -48,7 +55,7 @@ public class ServletExample extends HttpServlet {
 		AziendaPK idAzienda = null;
 		Integer idDipartimento = null;
 		Integer idRuoli = null;
-		Integer idManzioni = null;
+		Integer idMansioni = null;
 		ImpiegatoPK idImpiegato = null;
 
 		String callType = request.getParameter("callType");
@@ -159,14 +166,47 @@ public class ServletExample extends HttpServlet {
 	
 			//Inizio Giampiero e Maurizio
 			case INSERTMANSIONE:
+				
+				String nomeRuolo = request.getParameter("nomeRuolo");
+				String nomeImp = request.getParameter("nome");
+				String cognomeImp = request.getParameter("cognome");
+				String codFiscImp = request.getParameter("codiceFiscale");
+				ruoliDTO.setNome(nomeRuolo);
+				impiegatoDTO.setNome(nomeImp);
+				impiegatoDTO.setCognome(cognomeImp);
+				impiegatoDTO.setCodice_fiscale(codFiscImp);
+				
+				serviceMansione.insertMansione(ruoliDTO, impiegatoDTO);
+				
+				dto = mansioneDTO;
+				
 				dispatcherPath="mansione.jsp";
 				message="Inserito Mansione con successo";
 				break;
 			case DELETEMANSIONE:
+				String idMansione = request.getParameter("IdMansione");
+				int id = Integer.parseInt(idMansione);
+				serviceMansione.deleteMansione(id);
+				
 				dispatcherPath="mansione.jsp";
 				message="Eliminato Mansione con successo";
 				break;
 			case UPDATEMANSIONE:
+				
+				String idMansione1 = request.getParameter("IdMansione");
+				int id1 = Integer.parseInt(idMansione1);
+				serviceMansione.deleteMansione(id1);
+				
+				String nomeRuolo1 = request.getParameter("nomeRuolo");
+				String nomeImp1 = request.getParameter("nome");
+				String cognomeImp1 = request.getParameter("cognome");
+				String codFiscImp1 = request.getParameter("codiceFiscale");
+				impiegatoDTO.setNome(nomeImp1);
+				impiegatoDTO.setCognome(cognomeImp1);
+				impiegatoDTO.setCodice_fiscale(codFiscImp1);
+				
+				serviceMansione.updateMansione(id1, impiegatoDTO, nomeRuolo1);
+				
 				dispatcherPath="mansione.jsp";
 				message="Aggiornato Mansione con successo";
 				break;
@@ -176,7 +216,6 @@ public class ServletExample extends HttpServlet {
 	
 			//Inizio Giampiero e Maurizio
 			case INSERTRUOLO:
-				RuoliDTO ruoliDTO=new RuoliDTO();
 				serviceRuoli.insertRuolo(nome,descrizione);
 				ruoliDTO.setNome(nome);
 				ruoliDTO.setDescrizione(descrizione);

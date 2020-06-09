@@ -4,9 +4,9 @@ public class MansioneDTO extends AbstractDTO {
 
 	private int IdMansione;
 	private RuoliDTO ruoli;
-	private Object impiegato;
+	private ImpiegatoDTO impiegato;
 
-	public Object getImpiegato() {
+	public ImpiegatoDTO getImpiegato() {
 		return impiegato;
 	}
 
