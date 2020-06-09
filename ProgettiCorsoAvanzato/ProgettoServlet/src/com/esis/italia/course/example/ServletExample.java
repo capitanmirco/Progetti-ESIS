@@ -12,6 +12,7 @@ import com.esis.italia.course.example.dto.AziendaDTO;
 import com.esis.italia.course.example.dto.GenericDTO;
 import com.esis.italia.course.example.dto.RuoliDTO;
 import com.esis.italia.course.example.enumeration.CallType;
+import com.esis.italia.course.example.jpa.AziendaPK;
 import com.esis.italia.course.example.jpa.ImpiegatoPK;
 import com.esis.italia.course.example.services.ServiceAzienda;
 import com.esis.italia.course.example.services.ServiceDipartimento;
@@ -43,7 +44,7 @@ public class ServletExample extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String descrizione=request.getParameter("descrizione");
 		
-		Integer idAzienda = null;
+		AziendaPK idAzienda = null;
 		Integer idDipartimento = null;
 		Integer idRuoli = null;
 		Integer idManzioni = null;
@@ -55,10 +56,13 @@ public class ServletExample extends HttpServlet {
 
 			//Inizio Giovanni e Tullio
 			case INSERTAZIENDA:
+				String partitaIva = request.getParameter("partitaiva");
+				serviceAzienda.insertAzienda(nome, descrizione, partitaIva);
 				
-				serviceAzienda.insertAzienda(nome,descrizione);
 				aziendaDTO.setNome(nome);
 				aziendaDTO.setDescrizione(descrizione);
+				aziendaDTO.setPartitaIva(partitaIva);
+				
 				dto = aziendaDTO;
 				
 				dispatcherPath="azienda.jsp";
@@ -67,8 +71,12 @@ public class ServletExample extends HttpServlet {
 				
 			case DELETEAZIENDA:
 				
-				idAzienda = serviceAzienda.getId(nome);
-				serviceAzienda.deleteAzienda(idAzienda);
+				String partitaIva2 = request.getParameter("partitaiva");
+				AziendaPK aziendaPK2 = new AziendaPK();
+				aziendaPK2.setNome(nome);
+				aziendaPK2.setpIva(partitaIva2);
+				
+				serviceAzienda.deleteAzienda(aziendaPK2);
 				
 				dispatcherPath="azienda.jsp";
 				message="Azienda eliminata con successo";
@@ -76,9 +84,13 @@ public class ServletExample extends HttpServlet {
 				
 			case UPDATEAZIENDA:
 				
-				idAzienda = serviceAzienda.getId(nome);
-				serviceAzienda.updateAzienda(nome, descrizione, idAzienda);
-				dto = serviceAzienda.getAziendaByName(nome);
+				String partitaIva3 = request.getParameter("partitaiva");
+				AziendaPK aziendaPK3 = new AziendaPK();
+				aziendaPK3.setNome(nome);
+				aziendaPK3.setpIva(partitaIva3);
+				
+				serviceAzienda.updateAzienda(descrizione, aziendaPK3);
+				dto = serviceAzienda.selectAziendaId(aziendaPK3);
 				
 				dispatcherPath="azienda.jsp";
 				message="Aggiornato Azienda con successo";
@@ -95,7 +107,7 @@ public class ServletExample extends HttpServlet {
 			//Fine Giovanni e Tullio
 	
 			//Inizio Amra e Sara
-			case INSERTDIPARTIMENTO:
+			/*case INSERTDIPARTIMENTO:
 				idAzienda = Integer.parseInt(request.getParameter("idAzienda"));
 				idDipartimento = serviceDipartimento.insertDipartimento(nome,descrizione,idAzienda);
 				dto = serviceDipartimento.getDipartimentoByPK(idDipartimento);
@@ -107,8 +119,8 @@ public class ServletExample extends HttpServlet {
 				serviceDipartimento.deleteDipartimento(idDipartimento);
 				dispatcherPath="dipartimento.jsp";
 				message="Eliminato Ruolo con successo";
-				break;
-			case UPDATEDIPARTIMENTO:
+				break;*/
+			/*case UPDATEDIPARTIMENTO:
 				idAzienda = Integer.parseInt(request.getParameter("idAzienda"));
 				idDipartimento = Integer.parseInt(request.getParameter("idDipartimento"));
 				serviceDipartimento.updateDipartimento(nome, descrizione,idAzienda, idDipartimento);
@@ -119,7 +131,7 @@ public class ServletExample extends HttpServlet {
 			case SELECTDIPARTIMENTO:
 				dispatcherPath="dipartimento.jsp";
 				message="Selezionato Dipartimento con successo";
-				break;
+				break;*/
 			//Fine Amra e Sara
 	
 			//Inizio Mirko e Mario
