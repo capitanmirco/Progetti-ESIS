@@ -100,5 +100,5 @@ public class ImpiegatoDAO extends AbstractDAO<Impiegato,ImpiegatoPK> {
 			return null;
 		}
 	}
-
+	
 }

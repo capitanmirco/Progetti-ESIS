@@ -41,6 +41,7 @@ public class ServletExample extends HttpServlet {
 		ServiceDipartimento serviceDipartimento = new ServiceDipartimento();
 		ServiceAzienda serviceAzienda = new ServiceAzienda();
 		
+		
 		String nome = request.getParameter("nome");
 		String descrizione=request.getParameter("descrizione");
 		
@@ -136,10 +137,13 @@ public class ServletExample extends HttpServlet {
 	
 			//Inizio Mirko e Mario
 			case INSERTIMPIEGATO:
+				
+			
 				dispatcherPath="impiegato.jsp";
 				message="Inserito Impiegato con successo";
 				break;
 			case DELETEIMPIEGATO:
+				
 				dispatcherPath="impiegato.jsp";
 				message="Eliminato Impiegato con successo";
 				break;
