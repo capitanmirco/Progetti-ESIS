@@ -33,9 +33,9 @@ public class Dipartimento implements GenericEntity<Integer>{
 	
 	@Column(name="nome", insertable = false, updatable = false)
 	private String nome;
-
+	
 	private String descrizione;
-
+	
 	//bi-directional many-to-one association to Azienda
 	@ManyToOne
 	@JoinColumns({

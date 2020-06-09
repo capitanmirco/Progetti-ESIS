@@ -22,13 +22,14 @@ import com.esis.italia.course.example.jpa.Ruoli;
  *
  */
 public class MansioneDAO extends AbstractDAO<Mansione, Integer> {
-	public Integer insertRuolo(String nome, String descrizione) {
+
+	public Integer insertMansione(Ruoli ruolo, Impiegato impiegato) {
 
 		Integer result = -1;
 		try {
 			Mansione mansione = new Mansione();
-			mansione.setImpiegato(null);
-			mansione.setRuoli(null);
+			mansione.setImpiegato(impiegato);
+			mansione.setRuoli(ruolo);
 			result = insert(mansione);
 			return result;
 		} catch (Exception e) {
@@ -37,16 +38,16 @@ public class MansioneDAO extends AbstractDAO<Mansione, Integer> {
 
 	}
 
-	public boolean deleteRuolo(String nome) {
+	public boolean deleteMansione(int idMansione) {
 
 		boolean result = false;
 		try {
-			Ruoli ruolo = new Ruoli();
-			ruolo.setNome(nome);
+			Mansione mansione = new Mansione();
+			mansione.setIdMansione(idMansione);
 
 			EntityTransaction transaction = getEntityManager().getTransaction();
 			transaction.begin();
-			getEntityManager().remove(ruolo);
+			getEntityManager().remove(mansione);
 			transaction.commit();
 			result = true;
 			return result;
@@ -56,16 +57,15 @@ public class MansioneDAO extends AbstractDAO<Mansione, Integer> {
 
 	}
 
-	public Integer updateMansione(Integer idMansione, ImpiegatoPK impiegatoPK, String idRuoli) {
+	public Integer updateMansione(Integer idMansione, Impiegato impiegato, String idRuoli) {
 
 		Integer result = -1;
 		try {
-			if (idMansione != null && (impiegatoPK != null || idRuoli != null)) {
+			if (idMansione != null && (impiegato != null || idRuoli != null)) {
 				Mansione mansione = selectByPK(Mansione.class, idMansione);
 				ImpiegatoDAO impiegatoDAO = new ImpiegatoDAO();
 				RuoliDAO ruoliDAO = new RuoliDAO();
-				if (impiegatoPK != null) {
-					Impiegato impiegato = impiegatoDAO.selectByPK(Impiegato.class, impiegatoPK);
+				if (impiegato != null) {
 					mansione.setImpiegato(impiegato);
 				}
 				if (idRuoli != null) {
@@ -82,46 +82,12 @@ public class MansioneDAO extends AbstractDAO<Mansione, Integer> {
 
 	}
 
-	public List<Map> selectRuolo(String nome, String descrizione) {
+	public List<Map> selectMansione(Mansione mansione) {
 		List result = new ArrayList<>();
 		HashMap appo = new HashMap<>();
 		try {
-			Ruoli ruolo = new Ruoli();
-			ruolo.setNome(nome);
 
-			Ruoli testRuolo = getEntityManager().find(Ruoli.class, nome);
-			String tempQuery = "select r from Ruoli r ";
-			String where = " ";
-
-			if (nome != null && !nome.isEmpty()) {
-				where += "r.nome = :nome";
-				appo.put("nome", nome);
-
-			}
-			if (descrizione != null && !descrizione.isEmpty()) {
-				if (appo.isEmpty()) {
-					where += "r.descrizione = :descrizione";
-				} else if (!appo.isEmpty()) {
-					where += " and r.descrizione = :descrizione";
-				}
-				appo.put("descrizione", descrizione);
-			}
-			if (!where.trim().isEmpty()) {
-				tempQuery += "where " + where;
-			}
-
-			Query query = getEntityManager().createQuery(tempQuery);
-			appo.entrySet().forEach(action -> {
-				query.setParameter((String) ((Entry) action).getKey(), ((Entry) action).getValue());
-			});
-
-			List<Ruoli> list = query.getResultList();
-			for (Ruoli r : list) {
-				HashMap map = new HashMap();
-				map.put("nome", r.getNome());
-				map.put("descrizione", r.getDescrizione());
-				result.add(map);
-			}
+			Mansione mansioneTest = getEntityManager().find(Mansione.class, mansione.getID());
 
 			return result;
 		} catch (Exception e) {

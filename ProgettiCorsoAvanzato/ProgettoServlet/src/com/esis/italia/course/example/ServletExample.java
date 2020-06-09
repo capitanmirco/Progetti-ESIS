@@ -39,7 +39,11 @@ public class ServletExample extends HttpServlet {
 		RuoliDTO ruoliDTO = new RuoliDTO();
 		ImpiegatoDTO impiegatoDTO = new ImpiegatoDTO();
 		MansioneDTO mansioneDTO = new MansioneDTO();
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> refs/remotes/origin/master
 		String message="";
 		String dispatcherPath="";
 
@@ -47,7 +51,11 @@ public class ServletExample extends HttpServlet {
 		ServiceDipartimento serviceDipartimento = new ServiceDipartimento();
 		ServiceAzienda serviceAzienda = new ServiceAzienda();
 		ServiceMansione serviceMansione = new ServiceMansione();
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> refs/remotes/origin/master
 		
 		String nome = request.getParameter("nome");
 		String descrizione=request.getParameter("descrizione");
