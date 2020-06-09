@@ -96,6 +96,7 @@ abstract class AbstractDAO<T extends GenericEntity<ID>, ID> implements GenericDA
 	public T selectByPK(Class<? extends T> clazz, ID id) {
 
 		T result = null;
+		
 		try {
 			result = getEntityManager().find(clazz, id);
 			return result;

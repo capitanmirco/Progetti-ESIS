@@ -3,8 +3,11 @@ package com.esis.italia.course.example.services;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Query;
+
 import com.esis.italia.course.example.dto.AziendaDTO;
 import com.esis.italia.course.example.jpa.Azienda;
+import com.esis.italia.course.example.jpa.AziendaPK;
 import com.esis.italia.course.example.jpa.dao.AziendaDAO;
 
 public class ServiceAzienda extends AbstractService<AziendaDAO> {
@@ -13,30 +16,37 @@ public class ServiceAzienda extends AbstractService<AziendaDAO> {
 		this.dao = new AziendaDAO();
 	}
 	
-	public Integer insertAzienda(String nome,String descrizione) {
-		return getDao().insertAzienda(nome, descrizione);
+	public AziendaPK getId(String nome) {
+		return getDao().getIdByName(nome);
 	}
 	
-	public Integer updateAzienda(String nome,String descrizione, Integer idAzienda) {
-		return getDao().updateAziendaDesc(nome, descrizione, idAzienda);
+	public AziendaPK insertAzienda(String nome,String descrizione, String pIva) {
+		return getDao().insertAzienda(nome, descrizione, pIva);
 	}
 	
-	public boolean deleteAzienda(Integer idAzienda) {
+	public AziendaPK updateAzienda(String descrizione, AziendaPK idAzienda) {
+		return getDao().updateAziendaDesc(descrizione, idAzienda);
+	}
+	
+	public boolean deleteAzienda(AziendaPK idAzienda) {
 		return getDao().deleteAzienda(idAzienda);
 	}
 	
-	public AziendaDTO selectAziendaId(Integer idAzienda) {
+	public AziendaDTO selectAziendaId(AziendaPK idAzienda) {
+		
 		AziendaDTO a1 = new AziendaDTO();
 		Azienda a = getDao().selectByPK(Azienda.class, idAzienda);
+		
+		a1.setNome(a.getId().getNome());
 		a1.setDescrizione(a.getDescrizione());
-		a1.setNome(a.getNome());
+		a1.setPartitaIva(a.getId().getpIva());
 		return a1;
 	}
 	
 	public 	AziendaDTO getAziendaByName(String name) {
 		
 		AziendaDTO result = new AziendaDTO();
-		List<Map> selectAzienda = getDao().selectAzienda(name, null);
+		List<Map> selectAzienda = getDao().selectAzienda(name, null, null);
 		
 		if(selectAzienda.size()>0) {
 			Map map = selectAzienda.get(0);
@@ -45,19 +55,6 @@ public class ServiceAzienda extends AbstractService<AziendaDAO> {
 		}
 		
 		return result;
-	}
-	
-	public Integer getIdByName(String nome) {
-		
-		Azienda a = new Azienda();
-		List<Map> lista = getDao().selectAzienda(nome, null);
-		
-		if(lista.size()>0) {
-			Map map = lista.get(0);
-			return (Integer) map.get("idAzienda");
-		}
-		
-		return null;
 	}
 	
 }

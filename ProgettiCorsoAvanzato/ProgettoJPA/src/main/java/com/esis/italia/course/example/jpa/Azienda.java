@@ -5,34 +5,33 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "azienda")
 @NamedQuery(name="Azienda.findAll", query="SELECT a FROM Azienda a")
-@SequenceGenerator(name="sq_azienda", initialValue=1, allocationSize=1)
-public class Azienda implements GenericEntity<Integer>{
+public class Azienda implements GenericEntity<AziendaPK>{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@Column(name="id_azienda", unique=true, nullable=false)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "sq_azienda")
-	private Integer idAzienda;
 
 	private String descrizione;
+	
+	@EmbeddedId
+	private AziendaPK id;
+	
+	
+	public AziendaPK getId() {
+		return id;
+	}
+	
+	public void setId(AziendaPK id) {
+		this.id = id;
+	}
 
-	private String nome;
 
 	//bi-directional many-to-one association to Dipartimento
 	@OneToMany(mappedBy="azienda")
 	private List<Dipartimento> dipartimentos;
 
 	public Azienda() {
-	}
-
-	public Integer getIdAzienda() {
-		return this.idAzienda;
-	}
-
-	public void setIdAzienda(Integer idAzienda) {
-		this.idAzienda = idAzienda;
 	}
 
 	public String getDescrizione() {
@@ -43,18 +42,11 @@ public class Azienda implements GenericEntity<Integer>{
 		this.descrizione = descrizione;
 	}
 
-	public String getNome() {
-		return this.nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 
 	public List<Dipartimento> getDipartimentos() {
 		return this.dipartimentos;
 	}
-
+	
 	public void setDipartimentos(List<Dipartimento> dipartimentos) {
 		this.dipartimentos = dipartimentos;
 	}
@@ -74,8 +66,8 @@ public class Azienda implements GenericEntity<Integer>{
 	}
 
 	@Override
-	public Integer getID() {
-		return this.idAzienda;
+	public AziendaPK getID() {
+		return this.id;
 	}
 
 }
