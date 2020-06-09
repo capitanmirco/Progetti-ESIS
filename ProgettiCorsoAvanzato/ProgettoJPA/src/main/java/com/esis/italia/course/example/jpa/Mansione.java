@@ -21,7 +21,7 @@ import javax.persistence.SequenceGenerator;
  */
 @Entity
 @NamedQuery(name="Mansione.findAll", query="SELECT m FROM Mansione m")
-@SequenceGenerator(name="seq_Ruoli", initialValue=1, allocationSize=100)
+@SequenceGenerator(name="seq_Mansione", initialValue=1, allocationSize=100)
 public class Mansione implements GenericEntity<Integer> {
 	private static final long serialVersionUID = 1L;
 
