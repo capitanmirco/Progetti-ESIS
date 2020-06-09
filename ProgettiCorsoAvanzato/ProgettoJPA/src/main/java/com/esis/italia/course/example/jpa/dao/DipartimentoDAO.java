@@ -9,21 +9,28 @@ import java.util.Map.Entry;
 import javax.persistence.Query;
 
 import com.esis.italia.course.example.jpa.Azienda;
+import com.esis.italia.course.example.jpa.AziendaPK;
 import com.esis.italia.course.example.jpa.Dipartimento;
 import com.esis.italia.course.example.jpa.Ruoli;
 
 public class DipartimentoDAO extends AbstractDAO<Dipartimento, Integer> {
 
-	public Integer insertDipartimento(String nome, String descrizione, Integer idAzienda) {
+	public Integer insertDipartimento(String nome, String descrizione, AziendaPK idAzienda, String descrizioneAzienda) {
 
 		Integer result = null;
+
 		try {
 			Dipartimento d = new Dipartimento();
-			AziendaDAO a = new AziendaDAO();
-			Azienda b = a.selectAziendaId(idAzienda);
+
+			Azienda b = new Azienda();
+			b.setDescrizione(descrizioneAzienda);
+			b.setId(idAzienda);
+			
 			d.setNome(nome);
 			d.setDescrizione(descrizione);
 			d.setAzienda(b);
+			
+
 			result = insert(d);
 			return result;
 		} catch (Exception e) {
@@ -45,25 +52,24 @@ public class DipartimentoDAO extends AbstractDAO<Dipartimento, Integer> {
 
 	}
 
-	public Integer updateDipartimento(String nome, String descrizione,Integer idAzienda,Integer idDipartimento) {
+	public Integer updateDipartimento(String descrizione, AziendaPK aziendaPk, Integer idDipartimento) {
 
 		Integer result = null;
-
+		
 		try {
-			if ((nome != null && !nome.isEmpty()) || (descrizione != null && !descrizione.isEmpty())){
+			if ((descrizione != null && !descrizione.isEmpty())) {
 				Dipartimento d = this.selectDipartimentoId(idDipartimento);
-				if (nome != null && !nome.isEmpty()) {
-					d.setNome(nome);
-
-				}
+				
 				if (descrizione != null && !descrizione.isEmpty()) {
 					d.setDescrizione(descrizione);
 				}
-				if (idAzienda != null ) {
-					AziendaDAO aziendaDAO=new AziendaDAO();
-					Azienda azienda = aziendaDAO.selectByPK(Azienda.class, idAzienda);
+				
+				if (aziendaPk != null) {
+					AziendaDAO aziendaDao = new AziendaDAO();
+					Azienda azienda = aziendaDao.selectByPK(Azienda.class, aziendaPk);
 					d.setAzienda(azienda);
 				}
+				
 				result = updateByPK(d, idDipartimento);
 			}
 			return result;
@@ -130,6 +136,21 @@ public class DipartimentoDAO extends AbstractDAO<Dipartimento, Integer> {
 		} catch (Exception e) {
 			throw e;
 		}
+
+	}
+
+	public Integer getIdByName(String nome) {
+
+		String sql = "SELECT d FROM Dipartimento d WHERE nome = :nome";
+		Query query = getEntityManager().createQuery(sql);
+		query.setParameter("nome", nome);
+
+		List<Dipartimento> lista = query.getResultList();
+
+		if (lista.size() > 0) {
+			return lista.get(0).getID();
+		} else
+			return null;
 
 	}
 

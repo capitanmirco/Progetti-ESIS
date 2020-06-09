@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -19,6 +20,7 @@ import javax.persistence.SequenceGenerator;
 @NamedQuery(name="Dipartimento.findAll", query="SELECT d FROM Dipartimento d")
 @SequenceGenerator(name="seq_Dipartimento", initialValue=1, allocationSize=100)
 public class Dipartimento implements GenericEntity<Integer>{
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -28,24 +30,27 @@ public class Dipartimento implements GenericEntity<Integer>{
 
 	@Column(name="id_mansione")
 	private Integer idMansione;
-
+	
+	@Column(name="nome", insertable = false, updatable = false)
 	private String nome;
 
 	private String descrizione;
 
 	//bi-directional many-to-one association to Azienda
 	@ManyToOne
-	@JoinColumn(name="id_azienda")
+	@JoinColumns({
+        @JoinColumn(name="partitaIva", referencedColumnName="partita_iva"),
+        @JoinColumn(name="nome", referencedColumnName="nome")
+    })
 	private Azienda azienda;
 
 	public Dipartimento() {
 	}
 
-
 	public Integer getIdDipartimento() {
 		return this.idDipartimento;
 	}
-
+	
 	public void setIdDipartimento(Integer idDipartimento) {
 		this.idDipartimento = idDipartimento;
 	}

@@ -28,6 +28,7 @@ public class ServiceRuoli extends AbstractService<RuoliDAO> {
 		}
 		return result;
 	}
+	
 	public String insertRuolo(String name,String description) {
 		return getDao().insertRuolo(name, description);
 

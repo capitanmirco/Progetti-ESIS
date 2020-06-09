@@ -5,10 +5,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 
-/**
- * The persistent class for the ruoli database table.
- *
- */
 @Entity
 @NamedQuery(name="Ruoli.findAll", query="SELECT r FROM Ruoli r")
 public class Ruoli implements GenericEntity<String>{
