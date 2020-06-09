@@ -20,19 +20,21 @@ public class DipartimentoDAO extends AbstractDAO<Dipartimento, Integer> {
 		Integer result = null;
 
 		try {
+			
 			Dipartimento d = new Dipartimento();
 
 			Azienda b = new Azienda();
 			b.setDescrizione(descrizioneAzienda);
 			b.setId(idAzienda);
 			
-			d.setNome(nome);
+			d.setNomeDipartimento(nome);
 			d.setDescrizione(descrizione);
 			d.setAzienda(b);
 			
-
 			result = insert(d);
+			
 			return result;
+		
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
