@@ -42,7 +42,7 @@ public class EntityManagerStoreManager {
 				System.out.println("<----------------------------------------->");
 				System.out.println(dip.getNome());
 				System.out.println(dip.getDescrizione());
-				System.out.println(dip.getAzienda().getNome());
+//				System.out.println(dip.getAzienda().getNome());
 				System.out.println(dip.getAzienda().getDescrizione());
 
 			});
