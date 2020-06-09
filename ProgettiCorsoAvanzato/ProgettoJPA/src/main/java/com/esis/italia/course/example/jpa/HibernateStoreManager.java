@@ -31,7 +31,7 @@ public class HibernateStoreManager {
 			Criteria criteria = session.createCriteria(Azienda.class);
 			//criteria.add(Restrictions.eq("nome", "esis"));
 			Azienda uniqueResult = (Azienda) criteria.uniqueResult();
-			uniqueResult.getNome();
+//			uniqueResult.getNome();
 //			NativeQuery autoreQuery = session.createNativeQuery("select * from Autore");
 //			List<Autore> autors = autoreQuery.list();
 //			for (Autore autore : autors) {

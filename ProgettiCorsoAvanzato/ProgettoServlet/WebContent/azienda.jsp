@@ -26,6 +26,10 @@
 						<input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome" value="<c:out value="${dto.nome}"/>">
 					</div>
 					<div class="form-group">
+						<label for="partitaiva">Partita Iva</label> 
+						<input type="text" class="form-control" id="partitaiva" aria-describedby="partitaiva" name="partitaiva" value="<c:out value="${dto.partitaIva}"/>">
+					</div>
+					<div class="form-group">
 						<label for="descrizione">Descrizione</label> 
 						<input type="text" class="form-control" id="descrizione" aria-describedby="descrizione" name="descrizione" value="<c:out value="${dto.descrizione}"/>">
 					</div>
@@ -34,6 +38,10 @@
 					<div class="form-group">
 						<label for="nome">Nome</label> 
 						<input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome">
+					</div>
+					<div class="form-group">
+						<label for="partitaiva">Partita Iva</label> 
+						<input type="text" class="form-control" id="partitaiva" aria-describedby="partitaiva" name="partitaiva" >
 					</div>
 					<div class="form-group">
 						<label for="descrizione">Descrizione</label> 
