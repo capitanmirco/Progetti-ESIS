@@ -17,7 +17,7 @@ public interface MansioneRepository extends JpaRepository<Mansione, Integer> {
 	
 	public List<Mansione> findByImpiegato(Impiegato impiegato);
 	
-	public List<Mansione> findByImpiegatoCitta(String citta);
+	public List<Mansione> findByImpiegatoIdNome(String nome);
 	
 	public List<Mansione> findByRuoliNome(String nome);
 	
