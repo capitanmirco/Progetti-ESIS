@@ -2,7 +2,7 @@
 /**
  * 
  */
-package com.esis.course.example.jpa.respository;
+package com.esis.italia.course.example.jpa.respository;
 
 import java.util.List;
 
