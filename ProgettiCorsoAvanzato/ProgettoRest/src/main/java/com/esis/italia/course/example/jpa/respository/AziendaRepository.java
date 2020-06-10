@@ -10,19 +10,9 @@ import com.esis.italia.course.example.jpa.entity.Azienda;
 import com.esis.italia.course.example.jpa.entity.AziendaPK;
 
 
-
 @Repository
 public interface AziendaRepository extends JpaRepository<Azienda, AziendaPK> {
 
-	/*
-	 *	Modifica la descrizione dell'azienda con un certo id 
-	 *	@return null
-	 */
-	@Modifying
-	@Query("UPDATE AZIENDA a SET a.descrizione = ?3 WHERE a.nome = ?1 AND a.partita_iva = ?2")
-	public void updateDescrizione(
-			String nome, 
-			String pIva, 
-			String descrizione);
+	
 	
 }

@@ -21,22 +21,17 @@ public class ControllerAziendaRest {
 	@Autowired
 	private AziendaRepository repository;
 	
-	@Autowired
-	private AziendaPK idAzienda;
-	
-	@Autowired
-	private Azienda result;
-	
 	
 	@GetMapping("/azienda")
 	public Azienda getAziendaById(
 			@RequestParam String nome, 
 			@RequestParam String pIva) {
 	
-		
+		AziendaPK idAzienda = new AziendaPK();
 		idAzienda.setNome(nome);
 		idAzienda.setpIva(pIva);
 		
+		Azienda result = new Azienda();
 		result = repository.getOne(idAzienda);
 		return result; 
 	}
@@ -48,7 +43,7 @@ public class ControllerAziendaRest {
 			@RequestParam String pIva, 
 			@RequestParam String descrizione) {
 		
-		
+		AziendaPK idAzienda = new AziendaPK();
 		idAzienda.setNome(nome);
 		idAzienda.setpIva(pIva);
 		
@@ -56,6 +51,7 @@ public class ControllerAziendaRest {
 		azienda.setId(idAzienda);
 		azienda.setDescrizione(descrizione);
 		
+		Azienda result = new Azienda();
 		result = repository.save(azienda);
 		return result;
 	}
@@ -67,12 +63,16 @@ public class ControllerAziendaRest {
 			@RequestParam String pIva, 
 			@RequestParam String descrizione) {
 		
-		
+		AziendaPK idAzienda = new AziendaPK();
 		idAzienda.setNome(nome);
 		idAzienda.setpIva(pIva);
 		
+		Azienda azienda = new Azienda();
+		azienda.setId(idAzienda);
+		azienda.setDescrizione(descrizione);
+		
 		if(repository.existsById(idAzienda)) {
-			repository.updateDescrizione(nome, pIva, descrizione);
+			repository.save(azienda);
 			return true;
 		}
 		else {
@@ -87,7 +87,7 @@ public class ControllerAziendaRest {
 			@RequestParam String nome, 
 			@RequestParam String pIva) {
 		
-		
+		AziendaPK idAzienda = new AziendaPK();
 		idAzienda.setNome(nome);
 		idAzienda.setpIva(pIva);
 		
