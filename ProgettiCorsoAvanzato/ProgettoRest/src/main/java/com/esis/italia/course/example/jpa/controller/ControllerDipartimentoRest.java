@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,17 +16,18 @@ import com.esis.italia.course.example.jpa.entity.AziendaPK;
 import com.esis.italia.course.example.jpa.entity.Dipartimento;
 import com.esis.italia.course.example.jpa.respository.DipartimentoRepository;
 @RestController
+@RequestMapping("/dipartimento")
 public class ControllerDipartimentoRest {
 	@Autowired
 	private DipartimentoRepository repository;
 	private final DipartimentoDAO dao=new DipartimentoDAO();
-	@GetMapping("/dipartimento/{id}")
+	@GetMapping("/{id}")
 	public Dipartimento getDipartimentoById(@PathVariable String id_dipartimento) {
 		Dipartimento result=null;
 		result=repository.findById(id_dipartimento).orElse(null);
 		return result; 
 	}
-	@PostMapping("/dipartimento/")
+	@PostMapping("/")
 	public Dipartimento insertDipartimento(@RequestParam String nome,@RequestParam String descrizione, @RequestParam AziendaPK idAzienda, @RequestParam String descrizioneAzienda) {
 		Dipartimento d = new Dipartimento();
 		Azienda b = new Azienda();
@@ -37,7 +39,7 @@ public class ControllerDipartimentoRest {
 		repository.save(d);
 		return d; 
 	}
-	@PutMapping("/dipartimento/{id}")
+	@PutMapping("/{id}")
 	public Dipartimento updateDipartimento(@RequestParam String descrizione,@RequestParam AziendaPK aziendaPk,@RequestParam Integer idDipartimento) {
 		Dipartimento d=null;
 		//d=dao.selectByPK(d.class, idDipartimento);
@@ -48,7 +50,7 @@ public class ControllerDipartimentoRest {
 		repository.save(d);
 		return d; 
 	}
-	@DeleteMapping("/dipartimento/{id}")
+	@DeleteMapping("/{id}")
 	public boolean deleteDipartimento(@PathVariable Integer idDipartimento) {
 		boolean result = dao.deleteDipartimento(idDipartimento);
 		return result; 
