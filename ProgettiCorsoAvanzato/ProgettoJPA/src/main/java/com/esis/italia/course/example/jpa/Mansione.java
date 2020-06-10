@@ -21,13 +21,13 @@ import javax.persistence.SequenceGenerator;
  */
 @Entity
 @NamedQuery(name="Mansione.findAll", query="SELECT m FROM Mansione m")
-@SequenceGenerator(name="seq_Mansione", initialValue=1, allocationSize=100)
+@SequenceGenerator(name="seq_mansione", initialValue=1, allocationSize=1)
 public class Mansione implements GenericEntity<Integer> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id_mansione")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "seq_Mansione")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator= "seq_mansione")
 	private Integer idMansione;
 
 	@ManyToOne

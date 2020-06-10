@@ -27,9 +27,6 @@ public class ServletExample extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -39,11 +36,7 @@ public class ServletExample extends HttpServlet {
 		RuoliDTO ruoliDTO = new RuoliDTO();
 		ImpiegatoDTO impiegatoDTO = new ImpiegatoDTO();
 		MansioneDTO mansioneDTO = new MansioneDTO();
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> refs/remotes/origin/master
 		String message="";
 		String dispatcherPath="";
 
@@ -51,12 +44,7 @@ public class ServletExample extends HttpServlet {
 		ServiceDipartimento serviceDipartimento = new ServiceDipartimento();
 		ServiceAzienda serviceAzienda = new ServiceAzienda();
 		ServiceMansione serviceMansione = new ServiceMansione();
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> refs/remotes/origin/master
-		
 		String nome = request.getParameter("nome");
 		String descrizione=request.getParameter("descrizione");
 
@@ -69,10 +57,11 @@ public class ServletExample extends HttpServlet {
 		String callType = request.getParameter("callType");
 
 		switch (CallType.valueOf(callType)) {
-
+		
 			//Inizio Giovanni e Tullio
 			case INSERTAZIENDA:
 				String partitaIva = request.getParameter("partitaiva");
+				
 				serviceAzienda.insertAzienda(nome, descrizione, partitaIva);
 
 				aziendaDTO.setNome(nome);
@@ -84,9 +73,9 @@ public class ServletExample extends HttpServlet {
 				dispatcherPath="azienda.jsp";
 				message="Azienda inserita con successo";
 				break;
-
+			
 			case DELETEAZIENDA:
-
+			
 				String partitaIva2 = request.getParameter("partitaiva");
 				AziendaPK aziendaPK2 = new AziendaPK();
 				aziendaPK2.setNome(nome);
@@ -121,13 +110,14 @@ public class ServletExample extends HttpServlet {
 				break;
 
 				//Fine Giovanni e Tullio
-
+				
 				//Inizio Amra e Sara
 			case INSERTDIPARTIMENTO:
+				
 				String partitaIva4 = request.getParameter("partitaIva");
 				String nomeAzienda = request.getParameter("nomeAzienda");
 				idDipartimento = serviceDipartimento.insertDipartimento(nome, descrizione, nomeAzienda, partitaIva4);
-				
+
 				if(idDipartimento != -1) {
 
 					dto = serviceDipartimento.getDipartimentoByPK(idDipartimento);
@@ -142,29 +132,29 @@ public class ServletExample extends HttpServlet {
 				}
 
 				break;
-			
+
 			case DELETEDIPARTIMENTO:
-				
+
 				idDipartimento = serviceDipartimento.getIdDipartimento(nome);
 				serviceDipartimento.deleteDipartimento(idDipartimento);
 				dispatcherPath="dipartimento.jsp";
 				message="Eliminato Ruolo con successo";
 				break;
-			
+
 			case UPDATEDIPARTIMENTO:
-				
+
 				String partitaIva5 = request.getParameter("partitaIva");
 				String nomeAzienda2 = request.getParameter("nomeAzienda");
-			
+
 				idDipartimento = serviceDipartimento.getIdDipartimento(nome);
 				serviceDipartimento.updateDipartimento(nome, descrizione, nomeAzienda2, partitaIva5, idDipartimento);
-				
+
 				dto = serviceDipartimento.getDipartimentoByPK(idDipartimento);
-				
+
 				dispatcherPath="dipartimento.jsp";
 				message="Aggiornato Dipartimento con successo";
 				break;
-			
+
 			case SELECTDIPARTIMENTO:
 				dispatcherPath="dipartimento.jsp";
 				message="Selezionato Dipartimento con successo";
@@ -173,13 +163,13 @@ public class ServletExample extends HttpServlet {
 
 				//Inizio Mirko e Mario
 			case INSERTIMPIEGATO:
-				
-			
+
+
 				dispatcherPath="impiegato.jsp";
 				message="Inserito Impiegato con successo";
 				break;
 			case DELETEIMPIEGATO:
-				
+
 				dispatcherPath="impiegato.jsp";
 				message="Eliminato Impiegato con successo";
 				break;
@@ -195,7 +185,7 @@ public class ServletExample extends HttpServlet {
 
 				//Inizio Giampiero e Maurizio
 			case INSERTMANSIONE:
-				
+
 				String nomeRuolo = request.getParameter("nomeRuolo");
 				String nomeImp = request.getParameter("nome");
 				String cognomeImp = request.getParameter("cognome");
@@ -204,11 +194,11 @@ public class ServletExample extends HttpServlet {
 				impiegatoDTO.setNome(nomeImp);
 				impiegatoDTO.setCognome(cognomeImp);
 				impiegatoDTO.setCodice_fiscale(codFiscImp);
-				
+
 				serviceMansione.insertMansione(ruoliDTO, impiegatoDTO);
-				
+
 				dto = mansioneDTO;
-				
+
 				dispatcherPath="mansione.jsp";
 				message="Inserito Mansione con successo";
 				break;
@@ -216,16 +206,16 @@ public class ServletExample extends HttpServlet {
 				String idMansione = request.getParameter("IdMansione");
 				int id = Integer.parseInt(idMansione);
 				serviceMansione.deleteMansione(id);
-				
+
 				dispatcherPath="mansione.jsp";
 				message="Eliminato Mansione con successo";
 				break;
 			case UPDATEMANSIONE:
-				
+
 				String idMansione1 = request.getParameter("IdMansione");
 				int id1 = Integer.parseInt(idMansione1);
 				serviceMansione.deleteMansione(id1);
-				
+
 				String nomeRuolo1 = request.getParameter("nomeRuolo");
 				String nomeImp1 = request.getParameter("nome");
 				String cognomeImp1 = request.getParameter("cognome");
@@ -233,9 +223,9 @@ public class ServletExample extends HttpServlet {
 				impiegatoDTO.setNome(nomeImp1);
 				impiegatoDTO.setCognome(cognomeImp1);
 				impiegatoDTO.setCodice_fiscale(codFiscImp1);
-				
+
 				serviceMansione.updateMansione(id1, impiegatoDTO, nomeRuolo1);
-				
+
 				dispatcherPath="mansione.jsp";
 				message="Aggiornato Mansione con successo";
 				break;
