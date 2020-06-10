@@ -28,9 +28,12 @@ public class ControllerAziendaRest {
 	private Azienda result;
 	
 	
-	@GetMapping("/azienda/get")
-	public Azienda getAziendaById(@RequestParam String nome, @RequestParam String pIva) {
+	@GetMapping("/azienda")
+	public Azienda getAziendaById(
+			@RequestParam String nome, 
+			@RequestParam String pIva) {
 	
+		
 		idAzienda.setNome(nome);
 		idAzienda.setpIva(pIva);
 		
@@ -39,7 +42,7 @@ public class ControllerAziendaRest {
 	}
 	
 	
-	@PostMapping("/azienda/insert")
+	@PostMapping("/azienda")
 	public Azienda insertAzienda(
 			@RequestParam String nome, 
 			@RequestParam String pIva, 
@@ -55,11 +58,10 @@ public class ControllerAziendaRest {
 		
 		result = repository.save(azienda);
 		return result;
-		
 	}
 	
 	
-	@PutMapping("/azienda/update")
+	@PutMapping("/azienda")
 	public boolean updateAzienda(
 			@RequestParam String nome, 
 			@RequestParam String pIva, 
@@ -80,7 +82,7 @@ public class ControllerAziendaRest {
 	}
 	
 	
-	@DeleteMapping("/azienda/delete")
+	@DeleteMapping("/azienda")
 	public boolean deleteAzienda(
 			@RequestParam String nome, 
 			@RequestParam String pIva) {
