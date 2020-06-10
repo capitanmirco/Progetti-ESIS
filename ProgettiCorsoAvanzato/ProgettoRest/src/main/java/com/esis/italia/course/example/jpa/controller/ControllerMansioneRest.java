@@ -24,10 +24,10 @@ public class ControllerMansioneRest {
 	private final MansioneDAO dao = new MansioneDAO();
 
 	@GetMapping("/mansione/{id}")
-	public Mansione getMansioneById(@PathVariable int id) {
+	public Mansione getMansioneById(@PathVariable Integer id) {
 		Mansione result = null;
 
-		result = repository.findById(id);
+		result = repository.findById(id).orElse(new Mansione());
 
 		return result;
 	}
