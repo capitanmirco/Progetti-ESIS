@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.esis.course.example.jpa.respository.DipartimentoRepository;
+
+import com.esis.italia.course.example.jpa.dao.AziendaDAO;
+import com.esis.italia.course.example.jpa.dao.DipartimentoDAO;
 import com.esis.italia.course.example.jpa.entity.Azienda;
 import com.esis.italia.course.example.jpa.entity.AziendaPK;
 import com.esis.italia.course.example.jpa.entity.Dipartimento;
-import com.esis.italia.course.example.jpa.dao.AziendaDAO;
-import com.esis.italia.course.example.jpa.dao.DipartimentoDAO;
+import com.esis.italia.course.example.jpa.respository.DipartimentoRepository;
 @RestController
 public class ControllerDipartimentoRest {
 	@Autowired
