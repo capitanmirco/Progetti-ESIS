@@ -24,9 +24,6 @@ public interface DipartimentoRepository extends JpaRepository<Dipartimento, Stri
 	
 	List<Dipartimento> findByDescrizione(String descrizione);
 	
-	@Query(value = "select d from Dipartimento where nome = :nome")
-	Dipartimento getQualcosa(@Param("nome")String nome);
-	
 
 }/**
  * 
