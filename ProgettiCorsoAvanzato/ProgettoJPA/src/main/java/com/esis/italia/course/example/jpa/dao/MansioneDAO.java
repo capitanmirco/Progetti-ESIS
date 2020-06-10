@@ -12,10 +12,10 @@ import java.util.Map.Entry;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import com.esis.italia.course.example.jpa.Impiegato;
-import com.esis.italia.course.example.jpa.ImpiegatoPK;
-import com.esis.italia.course.example.jpa.Mansione;
-import com.esis.italia.course.example.jpa.Ruoli;
+import com.esis.italia.course.example.jpa.entity.Impiegato;
+import com.esis.italia.course.example.jpa.entity.ImpiegatoPK;
+import com.esis.italia.course.example.jpa.entity.Mansione;
+import com.esis.italia.course.example.jpa.entity.Ruoli;
 
 /**
  * @author Giampiero Cicala

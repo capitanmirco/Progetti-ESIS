@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esis.course.example.jpa.respository.RuoliRepository;
-import com.esis.italia.course.example.jpa.Ruoli;
 import com.esis.italia.course.example.jpa.dao.RuoliDAO;
+import com.esis.italia.course.example.jpa.entity.Ruoli;
+import com.esis.italia.course.example.jpa.respository.RuoliRepository;
 
 /**
  * @author giamp

@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import com.esis.italia.course.example.jpa.Impiegato;
-import com.esis.italia.course.example.jpa.ImpiegatoPK;
+import com.esis.italia.course.example.jpa.entity.Impiegato;
+import com.esis.italia.course.example.jpa.entity.ImpiegatoPK;
 
 public class ImpiegatoDAO extends AbstractDAO<Impiegato,ImpiegatoPK> {
 

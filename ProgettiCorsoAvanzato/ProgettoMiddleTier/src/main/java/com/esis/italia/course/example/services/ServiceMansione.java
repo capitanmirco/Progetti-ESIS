@@ -5,12 +5,12 @@ import com.esis.italia.course.example.dto.DipartimentoDTO;
 import com.esis.italia.course.example.dto.ImpiegatoDTO;
 import com.esis.italia.course.example.dto.MansioneDTO;
 import com.esis.italia.course.example.dto.RuoliDTO;
-import com.esis.italia.course.example.jpa.Dipartimento;
-import com.esis.italia.course.example.jpa.Impiegato;
-import com.esis.italia.course.example.jpa.ImpiegatoPK;
-import com.esis.italia.course.example.jpa.Mansione;
-import com.esis.italia.course.example.jpa.Ruoli;
 import com.esis.italia.course.example.jpa.dao.MansioneDAO;
+import com.esis.italia.course.example.jpa.entity.Dipartimento;
+import com.esis.italia.course.example.jpa.entity.Impiegato;
+import com.esis.italia.course.example.jpa.entity.ImpiegatoPK;
+import com.esis.italia.course.example.jpa.entity.Mansione;
+import com.esis.italia.course.example.jpa.entity.Ruoli;
 
 public class ServiceMansione extends AbstractService<MansioneDAO> {
 

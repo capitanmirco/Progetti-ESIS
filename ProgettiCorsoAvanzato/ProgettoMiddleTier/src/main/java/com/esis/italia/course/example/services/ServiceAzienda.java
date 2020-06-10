@@ -6,9 +6,9 @@ import java.util.Map;
 import javax.persistence.Query;
 
 import com.esis.italia.course.example.dto.AziendaDTO;
-import com.esis.italia.course.example.jpa.Azienda;
-import com.esis.italia.course.example.jpa.AziendaPK;
 import com.esis.italia.course.example.jpa.dao.AziendaDAO;
+import com.esis.italia.course.example.jpa.entity.Azienda;
+import com.esis.italia.course.example.jpa.entity.AziendaPK;
 
 public class ServiceAzienda extends AbstractService<AziendaDAO> {
 

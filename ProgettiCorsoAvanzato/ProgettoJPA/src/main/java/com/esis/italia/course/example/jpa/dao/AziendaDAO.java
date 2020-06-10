@@ -8,8 +8,8 @@ import java.util.Map.Entry;
 
 import javax.persistence.Query;
 
-import com.esis.italia.course.example.jpa.Azienda;
-import com.esis.italia.course.example.jpa.AziendaPK;
+import com.esis.italia.course.example.jpa.entity.Azienda;
+import com.esis.italia.course.example.jpa.entity.AziendaPK;
 
 public class AziendaDAO extends AbstractDAO<Azienda, AziendaPK> {
 

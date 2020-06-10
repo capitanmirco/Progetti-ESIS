@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.esis.italia.course.example.jpa;
+package com.esis.italia.course.example.jpa.entity;
 
 import java.util.Calendar;
 import java.util.HashMap;

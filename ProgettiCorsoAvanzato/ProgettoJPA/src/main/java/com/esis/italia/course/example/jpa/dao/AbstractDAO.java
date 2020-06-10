@@ -15,8 +15,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import com.esis.italia.course.example.jpa.GenericEntity;
-import com.esis.italia.course.example.jpa.Ruoli;
+import com.esis.italia.course.example.jpa.entity.GenericEntity;
+import com.esis.italia.course.example.jpa.entity.Ruoli;
 
 /**
  * @author Giampiero Cicala

@@ -5,9 +5,9 @@ import java.util.Map;
 
 import com.esis.italia.course.example.dto.AziendaDTO;
 import com.esis.italia.course.example.dto.DipartimentoDTO;
-import com.esis.italia.course.example.jpa.AziendaPK;
-import com.esis.italia.course.example.jpa.Dipartimento;
 import com.esis.italia.course.example.jpa.dao.DipartimentoDAO;
+import com.esis.italia.course.example.jpa.entity.AziendaPK;
+import com.esis.italia.course.example.jpa.entity.Dipartimento;
 
 public class ServiceDipartimento extends AbstractService<DipartimentoDAO> {
 	

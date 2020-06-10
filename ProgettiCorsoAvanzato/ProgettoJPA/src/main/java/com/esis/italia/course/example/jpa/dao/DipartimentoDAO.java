@@ -8,10 +8,10 @@ import java.util.Map.Entry;
 
 import javax.persistence.Query;
 
-import com.esis.italia.course.example.jpa.Azienda;
-import com.esis.italia.course.example.jpa.AziendaPK;
-import com.esis.italia.course.example.jpa.Dipartimento;
-import com.esis.italia.course.example.jpa.Ruoli;
+import com.esis.italia.course.example.jpa.entity.Azienda;
+import com.esis.italia.course.example.jpa.entity.AziendaPK;
+import com.esis.italia.course.example.jpa.entity.Dipartimento;
+import com.esis.italia.course.example.jpa.entity.Ruoli;
 
 public class DipartimentoDAO extends AbstractDAO<Dipartimento, Integer> {
 

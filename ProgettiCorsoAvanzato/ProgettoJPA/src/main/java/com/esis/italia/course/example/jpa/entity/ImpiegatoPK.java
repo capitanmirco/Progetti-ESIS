@@ -1,4 +1,4 @@
-package com.esis.italia.course.example.jpa;
+package com.esis.italia.course.example.jpa.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;

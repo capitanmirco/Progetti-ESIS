@@ -9,7 +9,7 @@
 		<version>2.3.0.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.esis.course.example.rest</groupId>
+	<groupId>com.esis.italia.course.example.rest</groupId>
 	<artifactId>RestService</artifactId>
 	<version>1.0</version>
 	<name>RestService</name>

@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.esis.italia.course.example.jpa;
+package com.esis.italia.course.example.jpa.entity;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;

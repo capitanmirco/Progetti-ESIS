@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 
 import javax.persistence.Query;
 
-import com.esis.italia.course.example.jpa.Ruoli;
+import com.esis.italia.course.example.jpa.entity.Ruoli;
 
 public class RuoliDAO extends AbstractDAO<Ruoli,String> {
 

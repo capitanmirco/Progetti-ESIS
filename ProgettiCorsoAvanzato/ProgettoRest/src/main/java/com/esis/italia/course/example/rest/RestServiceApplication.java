@@ -1,11 +1,15 @@
-package com.esis.course.example.rest;
+package com.esis.italia.course.example.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.esis.italia.course.example.jpa")
+@EnableJpaRepositories("com.esis.italia.course.example.jpa.respository")
+@ComponentScan({"com.esis.italia.course.example.jpa"})
+@EntityScan("com.esis.italia.course.example.jpa.entity")
 public class RestServiceApplication {
 
 	public static void main(String[] args) {
