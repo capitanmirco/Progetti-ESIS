@@ -34,6 +34,9 @@ public class Dipartimento implements GenericEntity<Integer>{
 	@Column(name="nome", insertable = false, updatable = false)
 	private String nome;
 	
+	@Column(name="nome_dipartimento", updatable = false)
+	private String nomeDipartimento;
+	
 	private String descrizione;
 	
 	//bi-directional many-to-one association to Azienda
@@ -46,6 +49,18 @@ public class Dipartimento implements GenericEntity<Integer>{
 
 	public Dipartimento() {
 	}
+	
+	public String getNomeDipartimento() {
+		return nomeDipartimento;
+	}
+
+
+
+	public void setNomeDipartimento(String nomeDipartimento) {
+		this.nomeDipartimento = nomeDipartimento;
+	}
+
+
 
 	public Integer getIdDipartimento() {
 		return this.idDipartimento;

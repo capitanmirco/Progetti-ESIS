@@ -28,6 +28,7 @@ public class ServiceDipartimento extends AbstractService<DipartimentoDAO> {
 		}return result;
 	}
 	
+	
 	public Integer insertDipartimento(String name,String description, String nomeAzienda, String partitaIva) {
 		AziendaPK aziendaPk= new AziendaPK();
 		aziendaPk.setNome(nomeAzienda);
@@ -35,15 +36,14 @@ public class ServiceDipartimento extends AbstractService<DipartimentoDAO> {
 
 		ServiceAzienda s= new ServiceAzienda();
 		AziendaDTO aziendaDTO = s.selectAziendaId(aziendaPk);
+		
 		if(aziendaDTO != null) {
-
-
 			return getDao().insertDipartimento(name, description, aziendaPk, aziendaDTO.getDescrizione());
 		}
-
-		return -1;
-
+		else return -1;
 	}
+	
+	
 	public Integer updateDipartimento(String name,String description,String nomeAzienda, String partitaIva, Integer idDipartimento) {
 
 		AziendaPK aziendaPk= new AziendaPK();
