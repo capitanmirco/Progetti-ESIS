@@ -6,12 +6,12 @@
 	<persistence-unit name="ProgettoJPA"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>com.esis.italia.course.example.jpa.Azienda</class>
-		<class>com.esis.italia.course.example.jpa.Dipartimento</class>
-		<class>com.esis.italia.course.example.jpa.Impiegato</class>
-		<class>com.esis.italia.course.example.jpa.ImpiegatoPK</class>
-		<class>com.esis.italia.course.example.jpa.Mansione</class>
-		<class>com.esis.italia.course.example.jpa.Ruoli</class>
+		<class>com.esis.italia.course.example.jpa.entity.Azienda</class>
+		<class>com.esis.italia.course.example.jpa.entity.Dipartimento</class>
+		<class>com.esis.italia.course.example.jpa.entity.Impiegato</class>
+		<class>com.esis.italia.course.example.jpa.entity.ImpiegatoPK</class>
+		<class>com.esis.italia.course.example.jpa.entity.Mansione</class>
+		<class>com.esis.italia.course.example.jpa.entity.Ruoli</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="org.postgresql.Driver" />
@@ -25,6 +25,7 @@
 				value="org.hibernate.dialect.PostgreSQL95Dialect" />
 			<property name="javax.persistence.jdbc.user"
 				value="corso1_dba" />
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="create"/> -->
 		</properties>
 	</persistence-unit>
 </persistence>
