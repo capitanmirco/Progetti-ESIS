@@ -21,7 +21,7 @@ public interface ImpiegatoRepository extends JpaRepository<Impiegato, String>{
 	Impiegato findByTitoloStudio(String titoloStudio);
 	Impiegato findByCitta(String citta);
 	
-	List<ImpiegatoPK> findByDescrizione(String nome,String cognome,String codiceFiscale);
+	List<ImpiegatoPK> findByPK(String nome,String cognome,String codiceFiscale);
 	@Query(value = "select a from Impiegato where nome = :nome and cognome = :cognome and codice_fiscale = :codiceFiscale")
 	Impiegato getQualcosa(@Param("nome")String nome,@Param("cognome")String cognome,@Param("codice_fiscale")String codiceFiscale);
 	
