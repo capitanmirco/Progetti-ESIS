@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,7 @@ import com.esis.italia.course.example.jpa.respository.RuoliRepository;
  *
  */
 @RestController
+@RequestMapping("/ruoli")
 public class ControllerRuoliRest {
 	
 	@Autowired
@@ -28,7 +30,7 @@ public class ControllerRuoliRest {
 	
 	private final RuoliDAO dao=new RuoliDAO();
 
-	@GetMapping("/ruoli/{id}")
+	@GetMapping("/{id}")
 	public Ruoli getRuoliById(@PathVariable String id) {
 		Ruoli result=null;
 		//result=dao.selectByPK(Ruoli.class, id);
@@ -38,7 +40,7 @@ public class ControllerRuoliRest {
 		return result; 
 	}
 
-	@PostMapping("/ruoli/")
+	@PostMapping("/")
 	public Ruoli insertRuoli(@RequestParam String nome,@RequestParam String descrizione) {
 		
 		//String primaryKey = dao.updateRuolo(nome, descrizione);
@@ -52,7 +54,7 @@ public class ControllerRuoliRest {
 		
 		return ruoli; 
 	}
-	@PutMapping("/ruoli/{id}")
+	@PutMapping("/{id}")
 	public Ruoli updateRuoli(@PathVariable String id,@RequestParam String nome,@RequestParam String descrizione) {
 		Ruoli ruoli=null;
 		
@@ -64,7 +66,7 @@ public class ControllerRuoliRest {
 		return ruoli; 
 	}
 	
-	@DeleteMapping("/ruoli/{id}")
+	@DeleteMapping("/{id}")
 	public boolean deleteRuoli(@PathVariable String id) {
 		boolean result = dao.deleteRuolo(id);
 		return result; 

@@ -16,9 +16,8 @@
   <body>
     <div class="container">
     	<h1>Registrazione Ruolo</h1>
-    	<form action="service" method="GET">
-    	<input type="hidden" name="callType" id="callType" value="">	
-		  <c:choose>
+    	<form id="serviceForm" action="" method="">
+    	  <c:choose>
 		  	<c:when test="${dto  ne null}">
 		  	<div class="form-group">
 			    <label for="nome">Inserisci Nome</label>
@@ -40,6 +39,7 @@
 			  </div>
 			</c:otherwise>  
 		  </c:choose>
+		  <button type="submit" class="btn btn-primary" id="selectBtn">Cerca Ruolo</button>
 		  <button type="submit" class="btn btn-primary" id="inserisciBtn">Inserisci Ruolo</button>
 		  <button type="submit" class="btn btn-primary" id="modificaBtn">Modifica Ruolo</button>
 		  <button type="submit" class="btn btn-primary" id="eliminaBtn">Elimina Ruolo</button>
@@ -53,14 +53,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
  	<script type="text/javascript">
 	 	$(document).ready(function() {
+	 		$("#selezionaBtn").click(function(event){
+				$("#serviceForm").prop("action","ruoli");
+				$("#serviceForm").prop("method","GET");
+				
+			});
 			$("#inserisciBtn").click(function(event){
-				$("#callType").prop("value","INSERTRUOLO");
+				$("#serviceForm").prop("action","ruoli");
+				$("#serviceForm").prop("method","POST");
+				
 			});
 			$("#modificaBtn").click(function(event){
-				$("#callType").prop("value","UPDATERUOLO");
+				$("#serviceForm").prop("action","ruoli");
+				$("#serviceForm").prop("method","PUT");
 			});
 			$("#eliminaBtn").click(function(event){
-				$("#callType").prop("value","DELETERUOLO");
+				$("#serviceForm").prop("action","ruoli");
+				$("#serviceForm").prop("method","DELETE");
 			});
 		});
  	</script>
