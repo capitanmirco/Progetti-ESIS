@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.esis.italia.course.example.jpa.dao.RuoliDAO;
 import com.esis.italia.course.example.jpa.entity.Ruoli;
 import com.esis.italia.course.example.jpa.respository.RuoliRepository;
 
@@ -28,7 +27,7 @@ public class ControllerRuoliRest {
 	@Autowired
 	private RuoliRepository repository;
 	
-	private final RuoliDAO dao=new RuoliDAO();
+	//private final RuoliDAO dao=new RuoliDAO();
 
 	@GetMapping("/{id}")
 	public Ruoli getRuoliById(@PathVariable String id) {
@@ -55,11 +54,11 @@ public class ControllerRuoliRest {
 		return ruoli; 
 	}
 	@PutMapping("/{id}")
-	public Ruoli updateRuoli(@PathVariable String id,@RequestParam String nome,@RequestParam String descrizione) {
-		Ruoli ruoli=null;
+	public Ruoli updateRuoli(@RequestParam String nome,@RequestParam String descrizione) {
+		Ruoli ruoli=repository.findById(nome).orElse(new Ruoli());
 		
 		//String primaryKey = dao.updateRuolo(nome, descrizione);
-		ruoli=dao.selectByPK(Ruoli.class, id);
+		//ruoli=dao.selectByPK(Ruoli.class, id);
 		ruoli.setDescrizione(descrizione);
 		ruoli.setNome(nome);
 		repository.save(ruoli);
@@ -68,7 +67,8 @@ public class ControllerRuoliRest {
 	
 	@DeleteMapping("/{id}")
 	public boolean deleteRuoli(@PathVariable String id) {
-		boolean result = dao.deleteRuolo(id);
+		repository.deleteById(id);
+		boolean result = true;
 		return result; 
 	}
 }

@@ -22,17 +22,10 @@ public class ControllerAziendaRest {
 	private AziendaRepository repository;
 	
 	
-	@GetMapping("/azienda")
-	public Azienda getAziendaById(
-			@RequestParam String nome, 
-			@RequestParam String pIva) {
-	
-		AziendaPK idAzienda = new AziendaPK();
-		idAzienda.setNome(nome);
-		idAzienda.setpIva(pIva);
-		
-		Azienda result = new Azienda();
-		result = repository.getOne(idAzienda);
+	@GetMapping("/azienda/{id}")
+	public Azienda getAziendaById(@RequestParam AziendaPK id) {
+		Azienda result = repository.findById(id).orElse(new Azienda());
+
 		return result; 
 	}
 	
@@ -83,16 +76,7 @@ public class ControllerAziendaRest {
 	
 	
 	@DeleteMapping("/azienda")
-	public boolean deleteAzienda(
-			@RequestParam String nome, 
-			@RequestParam String pIva) {
-		
-		AziendaPK idAzienda = new AziendaPK();
-		idAzienda.setNome(nome);
-		idAzienda.setpIva(pIva);
-		
-		Azienda azienda = new Azienda();
-		azienda.setId(idAzienda);
+	public boolean deleteAzienda(@RequestParam AziendaPK idAzienda) {
 		
 		if(repository.existsById(idAzienda)) {
 			repository.deleteById(idAzienda);

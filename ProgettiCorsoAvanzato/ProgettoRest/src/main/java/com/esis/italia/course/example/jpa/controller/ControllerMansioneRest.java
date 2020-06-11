@@ -21,7 +21,7 @@ public class ControllerMansioneRest {
 	@Autowired
 	private MansioneRepository repository;
 
-	private final MansioneDAO dao = new MansioneDAO();
+	//private final MansioneDAO dao = new MansioneDAO();
 
 	@GetMapping("/mansione/{id}")
 	public Mansione getMansioneById(@PathVariable Integer id) {
@@ -46,10 +46,10 @@ public class ControllerMansioneRest {
 	}
 
 	@PutMapping("/mansione/{id}")
-	public Mansione updateMansione(@RequestParam int idMansione, @RequestParam Impiegato impiegato, @RequestParam Ruoli ruolo) {
+	public Mansione updateMansione(@RequestParam Integer idMansione, @RequestParam Impiegato impiegato, @RequestParam Ruoli ruolo) {
 		Mansione mansione = null;
 
-		mansione = dao.selectByPK(Mansione.class, idMansione);
+		mansione = repository.findById(idMansione).orElse(new Mansione());
         mansione.setImpiegato(impiegato);
         mansione.setRuoli(ruolo);
 		repository.save(mansione);
@@ -57,8 +57,9 @@ public class ControllerMansioneRest {
 	}
 
 	@DeleteMapping("/mansione/{id}")
-	public boolean deleteMansione(@PathVariable int idMansione) {
-		boolean result = dao.deleteMansione(idMansione);
+	public boolean deleteMansione(@PathVariable Integer idMansione) {
+		repository.deleteById(idMansione);
+		boolean result = true;
 		return result;
 	}
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esis.italia.course.example.jpa.dao.AziendaDAO;
-import com.esis.italia.course.example.jpa.dao.DipartimentoDAO;
 import com.esis.italia.course.example.jpa.entity.Azienda;
 import com.esis.italia.course.example.jpa.entity.AziendaPK;
 import com.esis.italia.course.example.jpa.entity.Dipartimento;
@@ -20,11 +19,11 @@ import com.esis.italia.course.example.jpa.respository.DipartimentoRepository;
 public class ControllerDipartimentoRest {
 	@Autowired
 	private DipartimentoRepository repository;
-	private final DipartimentoDAO dao=new DipartimentoDAO();
+	//private final DipartimentoDAO dao=new DipartimentoDAO();
 	@GetMapping("/{id}")
-	public Dipartimento getDipartimentoById(@PathVariable String id_dipartimento) {
+	public Dipartimento getDipartimentoById(@PathVariable Integer idDipartimento) {
 		Dipartimento result=null;
-		result=repository.findById(id_dipartimento).orElse(null);
+		result=repository.findById(idDipartimento).orElse(null);
 		return result; 
 	}
 	@PostMapping("/")
@@ -52,7 +51,8 @@ public class ControllerDipartimentoRest {
 	}
 	@DeleteMapping("/{id}")
 	public boolean deleteDipartimento(@PathVariable Integer idDipartimento) {
-		boolean result = dao.deleteDipartimento(idDipartimento);
+		repository.deleteById(idDipartimento);
+		boolean result = true;
 		return result; 
 	}
 }
