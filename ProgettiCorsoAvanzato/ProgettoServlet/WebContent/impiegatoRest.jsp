@@ -20,87 +20,85 @@
 
 	<div class="container">
 		<h1>Registrazione Impiegato</h1>
-		<form action="" method="post">
-			<c:choose>
-				<c:when test="${dto  ne null}">
-					<div class="form-group">
-						<label for="nome">Inserisci Nome</label> <input type="text"
-							class="form-control" id="nome" aria-describedby="nome"
-							name="nome">
+		<form action="" method="" id="serviceForm">
+		<c:choose>
+		<c:when test="${dto  ne null}">
+			<div class="form-group">
+				<label for="nome">Inserisci Nome</label> <input type="text"
+					class="form-control" id="nome" aria-describedby="nome" name="nome">
 
+				
+			</div>
+			<div class="form-group">
+				<label for="cognome">Inserisci Cognome</label> <input type="text"
+					class="form-control" id="cognome" aria-describedby="cognome"
+					name="cognome">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputDataDiNascita"> Data di nascita </label> <input
+					type="date" required class="form-control" name="datadinascita"
+					id="exampleInputDataDiNascita">
 
-					</div>
-					<div class="form-group">
-						<label for="cognome">Inserisci Cognome</label> <input type="text"
-							class="form-control" id="cognome" aria-describedby="cognome"
-							name="cognome">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputDataDiNascita"> Data di nascita </label> <input
-							type="date" required class="form-control" name="datadinascita"
-							id="exampleInputDataDiNascita">
-
-
-					</div>
-					<div class="form-group">
-						<label for="citta">Inserisci Città</label> <input type="text"
-							class="form-control" id="citta" aria-describedby="citta"
-							name="citta">
-					</div>
-					<div class="form-group">
-						<label for="via">Inserisci indirizzo</label> <input type="text"
-							class="form-control" id="via" aria-describedby="via" name="via">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputCodiceFiscale"> Codice Fiscale </label> <input
-							type="text" required class="form-control" name="codicefiscale"
-							id="exampleInputCodiceFiscale">
-					</div>
-					<div class="form-group">
-						<label for="via">Titolo di studio</label> <input type="text"
-							class="form-control" id="via" aria-describedby="via" name="via">
-					</div>
-				</c:when>
-				<c:otherwise>
-
-
+			
+			</div>
+			<div class="form-group">
+				<label for="citta">Inserisci Città</label> <input type="text"
+					class="form-control" id="citta" aria-describedby="citta"
+					name="citta">
+			</div>
+			<div class="form-group">
+				<label for="via">Inserisci indirizzo</label> <input type="text"
+					class="form-control" id="via" aria-describedby="via" name="via">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputCodiceFiscale"> Codice Fiscale </label> <input
+					type="text" required class="form-control" name="codicefiscale"
+					id="exampleInputCodiceFiscale">
+			</div>
+			<div class="form-group">
+				<label for="via">Titolo di studio</label> <input type="text"
+					class="form-control" id="via" aria-describedby="via" name="via">
+			</div>
+			</c:when>
+			<c:otherwise>
 
 
 
-					<div class="form-group">
-						<label for="nome">Inserisci Nome</label> <input type="text"
-							class="form-control" id="nome" aria-describedby="nome"
-							name="nome">
-					</div>
-					<div class="form-group">
-						<label for="cognome">Inserisci Cognome</label> <input type="text"
-							class="form-control" id="cognome" aria-describedby="cognome"
-							name="cognome">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputDataDiNascita"> Data di nascita </label> <input
-							type="date" required class="form-control" name="datadinascita"
-							id="exampleInputDataDiNascita">
-					</div>
-					<div class="form-group">
-						<label for="citta">Inserisci Città</label> <input type="text"
-							class="form-control" id="citta" aria-describedby="citta"
-							name="citta">
-					</div>
-					<div class="form-group">
-						<label for="via">Inserisci indirizzo</label> <input type="text"
-							class="form-control" id="via" aria-describedby="via" name="via">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputCodiceFiscale"> Codice Fiscale </label> <input
-							type="text" required class="form-control" name="codicefiscale"
-							id="exampleInputCodiceFiscale">
-					</div>
-					<div class="form-group">
-						<label for="via">Titolo di studio</label> <input type="text"
-							class="form-control" id="via" aria-describedby="via" name="via">
-					</div>
-				</c:otherwise>
+
+
+			<div class="form-group">
+				<label for="nome">Inserisci Nome</label> <input type="text"
+					class="form-control" id="nome" aria-describedby="nome" name="nome">
+			</div>
+			<div class="form-group">
+				<label for="cognome">Inserisci Cognome</label> <input type="text"
+					class="form-control" id="cognome" aria-describedby="cognome"
+					name="cognome">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputDataDiNascita"> Data di nascita </label> <input
+					type="date" required class="form-control" name="datadinascita"
+					id="exampleInputDataDiNascita">
+			</div>
+			<div class="form-group">
+				<label for="citta">Inserisci Città</label> <input type="text"
+					class="form-control" id="citta" aria-describedby="citta"
+					name="citta">
+			</div>
+			<div class="form-group">
+				<label for="via">Inserisci indirizzo</label> <input type="text"
+					class="form-control" id="via" aria-describedby="via" name="via">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputCodiceFiscale"> Codice Fiscale </label> <input
+					type="text" required class="form-control" name="codicefiscale"
+					id="exampleInputCodiceFiscale">
+			</div>
+			<div class="form-group">
+				<label for="via">Titolo di studio</label> <input type="text"
+					class="form-control" id="via" aria-describedby="via" name="via">
+			</div>
+			</c:otherwise>
 			</c:choose>
 
 
@@ -115,7 +113,7 @@
 				Impiegato</button>
 		</form>
 
-
+		
 	</div>
 
 	<!-- Optional JavaScript -->
@@ -132,17 +130,31 @@
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		crossorigin="anonymous"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#inserisciBtn").click(function(event) {
-				$("#callType").prop("value", "INSERTIMPIEGATO");
-			});
-			$("#modificaBtn").click(function(event) {
-				$("#callType").prop("value", "UPDATEIMPIEGATO");
-			});
-			$("#eliminaBtn").click(function(event) {
-				$("#callType").prop("value", "DELETEIMPIEGATO");
-			});
+	$(document).ready(function() {
+ 		$("#selezionaBtn").click(function(event){
+			$("#serviceForm").prop("method","get");
+			$("#serviceForm").prop("action","http://localhost:8081/impiegato/"+$("#nome").val());
+			$("#serviceForm").submit();
 		});
+		$("#inserisciBtn").click(function(event){
+			$("#serviceForm").prop("method","post");
+			$("#serviceForm").prop("action","http://localhost:8081/impiegato/");
+			
+			$("#serviceForm").submit();
+			
+		});
+		$("#modificaBtn").click(function(event){
+			$("#serviceForm").prop("method","put");
+			$("#serviceForm").prop("action","http://localhost:8081/impiegato/");
+			$("#serviceForm").submit();
+			
+		});
+		$("#eliminaBtn").click(function(event){
+			$("#serviceForm").prop("method","delete");
+			$("#serviceForm").prop("action","http://localhost:8081/impiegato/"+$("#nome").val());
+			$("#serviceForm").submit();
+		});
+	});
 	</script>
 </body>
 </html>
