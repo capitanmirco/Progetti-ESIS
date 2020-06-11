@@ -17,33 +17,39 @@
     <div class="container">
     	<h1>Registrazione Ruolo</h1>
     	<form id="serviceForm" action="" method="">
+    	</form>
     	  <c:choose>
 		  	<c:when test="${dto  ne null}">
-		  	<div class="form-group">
-			    <label for="nome">Inserisci Nome</label>
-			    <input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome" value="<c:out value="${dto.nome}"/>">
-			  </div>
-			  <div class="form-group">
-			    <label for="descrizione">Inserisci Descrizione</label>
-			    <input type="text" class="form-control" id="descrizione" aria-describedby="descrizione" name="descrizione"  value="<c:out value="${dto.descrizione}"/>">
-			  </div>
+		  		
+			  	  <div class="form-group">
+				    <label for="nome">Inserisci Nome</label>
+				    <input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome" value="<c:out value="${dto.nome}"/>">
+				  </div>
+				  <div class="form-group">
+				    <label for="descrizione">Inserisci Descrizione</label>
+				    <input type="text" class="form-control" id="descrizione" aria-describedby="descrizione" name="descrizione"  value="<c:out value="${dto.descrizione}"/>">
+				  </div>
+			 
 		  	</c:when>
 		  	<c:otherwise>
-				<div class="form-group">
-			    <label for="nome">Inserisci Nome</label>
-			    <input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome">
-			  </div>
-			  <div class="form-group">
-			    <label for="descrizione">Inserisci Descrizione</label>
-			    <input type="text" class="form-control" id="descrizione" aria-describedby="descrizione" name="descrizione">
-			  </div>
+		  		
+  				<div class="form-group">
+			    	<label for="nome">Inserisci Nome</label>
+			    	<input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome">
+			  	</div>
+			  	<div class="form-group">
+			    	<label for="descrizione">Inserisci Descrizione</label>
+			    	<input type="text" class="form-control" id="descrizione" aria-describedby="descrizione" name="descrizione">
+			 	</div>
+		  		
+			  
 			</c:otherwise>  
 		  </c:choose>
-		  <button type="submit" class="btn btn-primary" id="selectBtn">Cerca Ruolo</button>
-		  <button type="submit" class="btn btn-primary" id="inserisciBtn">Inserisci Ruolo</button>
-		  <button type="submit" class="btn btn-primary" id="modificaBtn">Modifica Ruolo</button>
-		  <button type="submit" class="btn btn-primary" id="eliminaBtn">Elimina Ruolo</button>
-		</form>
+		  <button type="button" class="btn btn-primary" id="selezionaBtn">Cerca Ruolo</button>
+		  <button type="button" class="btn btn-primary" id="inserisciBtn">Inserisci Ruolo</button>
+		  <button type="button" class="btn btn-primary" id="modificaBtn">Modifica Ruolo</button>
+		  <button type="button" class="btn btn-primary" id="eliminaBtn">Elimina Ruolo</button>
+		
     </div>
 	
     <!-- Optional JavaScript -->
@@ -54,24 +60,30 @@
  	<script type="text/javascript">
 	 	$(document).ready(function() {
 	 		$("#selezionaBtn").click(function(event){
-				$("#serviceForm").prop("action","ruoli");
-				$("#serviceForm").prop("method","GET");
-				
+				$("#serviceForm").prop("method","get");
+				$("#serviceForm").prop("action","http://localhost:8081/ruoli/"+$("#nome").val());
+				$("#serviceForm").submit();
 			});
 			$("#inserisciBtn").click(function(event){
-				$("#serviceForm").prop("action","ruoli");
-				$("#serviceForm").prop("method","POST");
+				$("#serviceForm").prop("method","post");
+				$("#serviceForm").prop("action","http://localhost:8081/ruoli/");
+				
+				$("#serviceForm").submit();
 				
 			});
 			$("#modificaBtn").click(function(event){
-				$("#serviceForm").prop("action","ruoli");
-				$("#serviceForm").prop("method","PUT");
+				$("#serviceForm").prop("method","put");
+				$("#serviceForm").prop("action","http://localhost:8081/ruoli/");
+				$("#serviceForm").submit();
+				
 			});
 			$("#eliminaBtn").click(function(event){
-				$("#serviceForm").prop("action","ruoli");
-				$("#serviceForm").prop("method","DELETE");
+				$("#serviceForm").prop("method","delete");
+				$("#serviceForm").prop("action","http://localhost:8081/ruoli/"+$("#nome").val());
+				$("#serviceForm").submit();
 			});
 		});
+		
  	</script>
   </body>
 </html>
