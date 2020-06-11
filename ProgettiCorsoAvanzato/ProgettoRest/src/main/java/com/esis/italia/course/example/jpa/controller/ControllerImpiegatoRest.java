@@ -24,7 +24,7 @@ import com.esis.italia.course.example.jpa.respository.ImpiegatoRepository;
  *
  */
 @RestController
-@RequestMapping("/impiegato")
+@RequestMapping("/")
 public class ControllerImpiegatoRest {
 
 	@Autowired
@@ -37,7 +37,7 @@ public class ControllerImpiegatoRest {
 		return result;
 	}
 
-	@PostMapping("/impiegato")
+	@PostMapping("/")
 	public Impiegato insertImpiegato(@RequestParam String nome, @RequestParam String cognome,
 			@RequestParam String codiceFiscale, @RequestParam String citta, @RequestParam String titoloStudio,
 			@RequestParam String indirizzo, @RequestParam Date dataNascita) {
@@ -54,7 +54,7 @@ public class ControllerImpiegatoRest {
 		return impiegato;
 	}
 
-	@PutMapping("/impiegato/")
+	@PutMapping("/")
 	public Impiegato updateImpiegato(@RequestParam String nome, @RequestParam String cognome,
 			@RequestParam String codiceFiscale, @RequestParam String citta, @RequestParam String titoloStudio,
 			@RequestParam String indirizzo, @RequestParam Date dataNascita) {
