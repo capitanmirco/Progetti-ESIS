@@ -5,8 +5,9 @@ import java.util.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.esis.italia.course.example.jpa.entity.Impiegato;
+import com.esis.italia.course.example.jpa.entity.ImpiegatoPK;
 
-public interface ImpiegatoRepository extends JpaRepository<Impiegato, String>{
+public interface ImpiegatoRepository extends JpaRepository<Impiegato, ImpiegatoPK>{
 	
 	public Impiegato findByIdNome(String nome);
 	
