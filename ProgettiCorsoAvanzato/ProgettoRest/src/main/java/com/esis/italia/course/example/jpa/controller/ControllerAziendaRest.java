@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,7 @@ import com.esis.italia.course.example.jpa.respository.AziendaRepository;
 
 
 @RestController
+@RequestMapping("/azienda")
 public class ControllerAziendaRest {
 	
 
@@ -22,7 +24,7 @@ public class ControllerAziendaRest {
 	private AziendaRepository repository;
 	
 	
-	@GetMapping("/azienda/{id}")
+	@GetMapping("/{id}")
 	public Azienda getAziendaById(@RequestParam AziendaPK id) {
 		Azienda result = repository.findById(id).orElse(new Azienda());
 
@@ -30,7 +32,7 @@ public class ControllerAziendaRest {
 	}
 	
 	
-	@PostMapping("/azienda")
+	@PostMapping("/")
 	public Azienda insertAzienda(
 			@RequestParam String nome, 
 			@RequestParam String pIva, 
@@ -50,8 +52,8 @@ public class ControllerAziendaRest {
 	}
 	
 	
-	@PutMapping("/azienda")
-	public boolean updateAzienda(
+	@PutMapping("/{id}")
+	public boolean updateAzienda(Integer id,
 			@RequestParam String nome, 
 			@RequestParam String pIva, 
 			@RequestParam String descrizione) {
@@ -75,11 +77,11 @@ public class ControllerAziendaRest {
 	}
 	
 	
-	@DeleteMapping("/azienda")
-	public boolean deleteAzienda(@RequestParam AziendaPK idAzienda) {
+	@DeleteMapping("/{id}")
+	public boolean deleteAzienda(@RequestParam AziendaPK id) {
 		
-		if(repository.existsById(idAzienda)) {
-			repository.deleteById(idAzienda);
+		if(repository.existsById(id)) {
+			repository.deleteById(id);
 			return true;
 		}	
 		else {
