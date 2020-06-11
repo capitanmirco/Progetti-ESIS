@@ -7,8 +7,6 @@ package com.esis.italia.course.example.jpa.respository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.esis.italia.course.example.jpa.entity.Dipartimento;
@@ -18,7 +16,7 @@ import com.esis.italia.course.example.jpa.entity.Dipartimento;
  *
  */
 @Repository
-public interface DipartimentoRepository extends JpaRepository<Dipartimento, String> {
+public interface DipartimentoRepository extends JpaRepository<Dipartimento, Integer> {
 	
 	Dipartimento findByNome(String nome);
 	
