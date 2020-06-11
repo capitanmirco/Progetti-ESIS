@@ -21,9 +21,9 @@ public class ControllerDipartimentoRest {
 	private DipartimentoRepository repository;
 	//private final DipartimentoDAO dao=new DipartimentoDAO();
 	@GetMapping("/{id}")
-	public Dipartimento getDipartimentoById(@PathVariable Integer idDipartimento) {
+	public Dipartimento getDipartimentoById(@PathVariable Integer id) {
 		Dipartimento result=null;
-		result=repository.findById(idDipartimento).orElse(null);
+		result=repository.findById(id).orElse(null);
 		return result; 
 	}
 	@PostMapping("/")
