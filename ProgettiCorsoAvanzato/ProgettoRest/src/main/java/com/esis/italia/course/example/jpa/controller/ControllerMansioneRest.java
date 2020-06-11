@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.esis.italia.course.example.jpa.dao.MansioneDAO;
 import com.esis.italia.course.example.jpa.respository.MansioneRepository;
 
 @RestController
+@RequestMapping("/mansione")
 public class ControllerMansioneRest {
 
 	@Autowired
@@ -23,7 +25,7 @@ public class ControllerMansioneRest {
 
 	//private final MansioneDAO dao = new MansioneDAO();
 
-	@GetMapping("/mansione/{id}")
+	@GetMapping("/{id}")
 	public Mansione getMansioneById(@PathVariable Integer id) {
 		Mansione result = null;
 
@@ -32,7 +34,7 @@ public class ControllerMansioneRest {
 		return result;
 	}
 
-	@PostMapping("/mansione/")
+	@PostMapping("/")
 	public Mansione insertMansione(@RequestParam int idMansione, @RequestParam Impiegato impiegato, @RequestParam Ruoli ruolo) {
 
 
@@ -45,7 +47,7 @@ public class ControllerMansioneRest {
 		return mansione;
 	}
 
-	@PutMapping("/mansione/{id}")
+	@PutMapping("/{id}")
 	public Mansione updateMansione(@RequestParam Integer idMansione, @RequestParam Impiegato impiegato, @RequestParam Ruoli ruolo) {
 		Mansione mansione = null;
 
@@ -56,7 +58,7 @@ public class ControllerMansioneRest {
 		return mansione;
 	}
 
-	@DeleteMapping("/mansione/{id}")
+	@DeleteMapping("/{id}")
 	public boolean deleteMansione(@PathVariable Integer idMansione) {
 		repository.deleteById(idMansione);
 		boolean result = true;
