@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esis.italia.course.example.jpa.entity.Impiegato;
@@ -24,15 +25,19 @@ import com.esis.italia.course.example.jpa.respository.ImpiegatoRepository;
  *
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/impiegato")
 public class ControllerImpiegatoRest {
 
 	@Autowired
 	private ImpiegatoRepository repository;
 
-	@GetMapping("/{id}")
-	public Impiegato getImpiegatoById(@PathVariable ImpiegatoPK id) {
-		Impiegato result = repository.findById(id).orElse(new Impiegato());
+	@GetMapping("/{nome}/{cognome}/{codiceFiscale}")
+	public @ResponseBody Impiegato getImpiegatoById(@PathVariable String nome,@PathVariable String cognome, @PathVariable String codiceFiscale) {
+		ImpiegatoPK impiegatoPK = new ImpiegatoPK();
+		impiegatoPK.setNome(nome);
+		impiegatoPK.setCognome(cognome);
+		impiegatoPK.setCodiceFiscale(codiceFiscale);
+		Impiegato result = repository.findById(impiegatoPK).orElse(new Impiegato());
 
 		return result;
 	}
