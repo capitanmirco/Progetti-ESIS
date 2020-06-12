@@ -8,7 +8,7 @@ import javax.persistence.*;
  * 
  */
 @Embeddable
-public class ImpiegatoPK implements Serializable {
+public class ImpiegatoPK implements Serializable /*extends AbstractPrimaryKey*/ {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
@@ -63,4 +63,5 @@ public class ImpiegatoPK implements Serializable {
 		
 		return hash;
 	}
+	
 }

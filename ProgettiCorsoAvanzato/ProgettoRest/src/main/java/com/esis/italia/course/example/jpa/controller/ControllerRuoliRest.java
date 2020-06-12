@@ -66,7 +66,7 @@ public class ControllerRuoliRest {
 	}
 	
 	@DeleteMapping("/{id}")
-	public @ResponseBody boolean deleteRuoli(@RequestBody String id) {
+	public @ResponseBody boolean deleteRuoli(@PathVariable String id) {
 		repository.deleteById(id);
 		boolean result = true;
 		return result; 

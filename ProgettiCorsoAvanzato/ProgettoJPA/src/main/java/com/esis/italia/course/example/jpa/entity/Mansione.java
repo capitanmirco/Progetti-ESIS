@@ -82,7 +82,7 @@ public class Mansione implements GenericEntity<Integer> {
 
 
 	@Override
-	public Integer getID() {
+	public Integer getPrimaryKey() {
 		// TODO Auto-generated method stub
 		return this.idMansione;
 	}

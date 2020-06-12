@@ -87,7 +87,7 @@ public class MansioneDAO extends AbstractDAO<Mansione, Integer> {
 		HashMap appo = new HashMap<>();
 		try {
 
-			Mansione mansioneTest = getEntityManager().find(Mansione.class, mansione.getID());
+			Mansione mansioneTest = getEntityManager().find(Mansione.class, mansione.getPrimaryKey());
 
 			return result;
 		} catch (Exception e) {

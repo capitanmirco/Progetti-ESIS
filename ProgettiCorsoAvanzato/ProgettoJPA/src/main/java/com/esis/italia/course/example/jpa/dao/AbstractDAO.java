@@ -47,7 +47,7 @@ abstract class AbstractDAO<T extends GenericEntity<ID>, ID> implements GenericDA
 			transaction.begin();
 			getEntityManager().persist(entity);
 			transaction.commit();
-			result = entity.getID();
+			result = entity.getPrimaryKey();
 			return result;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -82,7 +82,7 @@ abstract class AbstractDAO<T extends GenericEntity<ID>, ID> implements GenericDA
 				transaction.begin();
 				getEntityManager().merge(entity);
 				transaction.commit();
-				result = entity.getID();
+				result = entity.getPrimaryKey();
 			}
 
 			return result;

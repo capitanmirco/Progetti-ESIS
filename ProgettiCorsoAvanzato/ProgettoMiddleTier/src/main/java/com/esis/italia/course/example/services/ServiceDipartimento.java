@@ -64,7 +64,7 @@ public class ServiceDipartimento extends AbstractService<DipartimentoDAO> {
 		Dipartimento d = getDao().selectByPK(Dipartimento.class, idDipartimento);
 		DipartimentoDTO dto = new DipartimentoDTO();
 		ServiceAzienda s = new ServiceAzienda();
-		AziendaDTO aziendaId = s.selectAziendaId(d.getAzienda().getID());
+		AziendaDTO aziendaId = s.selectAziendaId(d.getAzienda().getId());
 		dto.setAzienda(aziendaId);
 		dto.setDescrizione(d.getDescrizione());
 		dto.setNome(d.getNome());

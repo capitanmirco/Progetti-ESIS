@@ -150,7 +150,7 @@ public class DipartimentoDAO extends AbstractDAO<Dipartimento, Integer> {
 		List<Dipartimento> lista = query.getResultList();
 
 		if (lista.size() > 0) {
-			return lista.get(0).getID();
+			return lista.get(0).getPrimaryKey();
 		} else
 			return null;
 

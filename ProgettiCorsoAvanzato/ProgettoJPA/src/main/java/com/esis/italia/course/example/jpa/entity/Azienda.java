@@ -66,7 +66,7 @@ public class Azienda implements GenericEntity<AziendaPK>{
 	}
 
 	@Override
-	public AziendaPK getID() {
+	public AziendaPK getPrimaryKey() {
 		return this.id;
 	}
 

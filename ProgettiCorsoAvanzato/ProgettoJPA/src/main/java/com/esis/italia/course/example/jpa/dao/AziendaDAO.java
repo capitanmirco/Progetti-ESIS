@@ -147,7 +147,7 @@ public class AziendaDAO extends AbstractDAO<Azienda, AziendaPK> {
 			for (Azienda a : list) {
 				
 				HashMap map = new HashMap();
-				map.put("idAzienda", a.getID());
+				map.put("idAzienda", a.getPrimaryKey());
 				map.put("descrizione", a.getDescrizione());
 				
 				result.add(map);
@@ -170,7 +170,7 @@ public class AziendaDAO extends AbstractDAO<Azienda, AziendaPK> {
 		List<Azienda> lista = query.getResultList();
 		
 		if(lista.size() > 0) {
-			return lista.get(0).getID();
+			return lista.get(0).getPrimaryKey();
 		}
 		else 
 			return null;

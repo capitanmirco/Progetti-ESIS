@@ -104,7 +104,7 @@ public class Dipartimento implements GenericEntity<Integer>{
 
 
 	@Override
-	public Integer getID() {
+	public Integer getPrimaryKey() {
 		return this.idDipartimento;
 	}
 

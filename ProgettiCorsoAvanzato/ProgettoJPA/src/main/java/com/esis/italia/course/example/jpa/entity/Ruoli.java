@@ -35,7 +35,7 @@ public class Ruoli implements GenericEntity<String>{
 	}
 
 	@Override
-	public String getID() {
+	public String getPrimaryKey() {
 		return this.nome;
 	}
 

@@ -94,7 +94,7 @@ public class Impiegato implements  GenericEntity<ImpiegatoPK>{
 	}
 
 	@Override
-	public ImpiegatoPK getID() {
+	public ImpiegatoPK getPrimaryKey() {
 		return this.id;
 	}
 
