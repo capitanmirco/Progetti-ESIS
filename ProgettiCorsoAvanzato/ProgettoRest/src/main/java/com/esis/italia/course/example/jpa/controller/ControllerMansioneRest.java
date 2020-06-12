@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.esis.italia.course.example.jpa.entity.Impiegato;
@@ -26,7 +28,7 @@ public class ControllerMansioneRest {
 	//private final MansioneDAO dao = new MansioneDAO();
 
 	@GetMapping("/{id}")
-	public Mansione getMansioneById(@PathVariable Integer id) {
+	public @ResponseBody Mansione getMansioneById(@PathVariable Integer id) {
 		Mansione result = null;
 
 		result = repository.findById(id).orElse(new Mansione());
@@ -35,31 +37,25 @@ public class ControllerMansioneRest {
 	}
 
 	@PostMapping("/")
-	public Mansione insertMansione(@RequestParam int idMansione, @RequestParam Impiegato impiegato, @RequestParam Ruoli ruolo) {
-
-
-		Mansione mansione = new Mansione();
-		mansione.setIdMansione(idMansione);
-		mansione.setImpiegato(impiegato);
-		mansione.setRuoli(ruolo);
+	public @ResponseBody Mansione insertMansione(@RequestParam Mansione mansione) {
 		repository.save(mansione);
 
 		return mansione;
 	}
 
-	@PutMapping("/{id}")
-	public Mansione updateMansione(@RequestParam Integer idMansione, @RequestParam Impiegato impiegato, @RequestParam Ruoli ruolo) {
-		Mansione mansione = null;
+	@PutMapping("/")
+	public @ResponseBody Mansione updateMansione(@RequestBody Mansione man) {
 
-		mansione = repository.findById(idMansione).orElse(new Mansione());
-        mansione.setImpiegato(impiegato);
-        mansione.setRuoli(ruolo);
+		Mansione mansione = new Mansione();
+		mansione = repository.findById(man.getIdMansione()).orElse(new Mansione());
+        mansione.setImpiegato(man.getImpiegato());
+        mansione.setRuoli(man.getRuoli());
 		repository.save(mansione);
 		return mansione;
 	}
 
 	@DeleteMapping("/{id}")
-	public boolean deleteMansione(@PathVariable Integer idMansione) {
+	public @ResponseBody boolean deleteMansione(@PathVariable Integer idMansione) {
 		repository.deleteById(idMansione);
 		boolean result = true;
 		return result;
