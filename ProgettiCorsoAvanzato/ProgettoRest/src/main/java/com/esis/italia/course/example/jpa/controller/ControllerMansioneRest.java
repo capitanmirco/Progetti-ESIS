@@ -37,7 +37,7 @@ public class ControllerMansioneRest {
 	}
 
 	@PostMapping("/")
-	public @ResponseBody Mansione insertMansione(@RequestParam Mansione mansione) {
+	public @ResponseBody Mansione insertMansione(@RequestBody Mansione mansione) {
 		repository.save(mansione);
 
 		return mansione;
@@ -55,8 +55,8 @@ public class ControllerMansioneRest {
 	}
 
 	@DeleteMapping("/{id}")
-	public @ResponseBody boolean deleteMansione(@PathVariable Integer idMansione) {
-		repository.deleteById(idMansione);
+	public @ResponseBody boolean deleteMansione(@PathVariable Integer id) {
+		repository.deleteById(id);
 		boolean result = true;
 		return result;
 	}
